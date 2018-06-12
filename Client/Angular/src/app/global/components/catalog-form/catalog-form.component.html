@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col-md-12" *ngIf="config">
+      <h5> {{ config.formName }} </h5>
+  </div>
+  <div *ngIf="dataTableConfig" class="app col-lg-7 col-md-12" style="height:100%; overflow-x:auto;">
+    <app-ng-data-table [options]="dataTableConfig" (rowSelect)="onRowSelect($event)"></app-ng-data-table>
+  </div>
+  <div *ngIf="config" class="app col-lg-5 col-md-12">
+    <dynamic-form [config]="config" 
+    (onSave)="onSave($event)" 
+    (onReset)="onReset($event)" 
+    (onUpdate)="onUpdate($event)"
+    (onDelete)="onDelete($event)" 
+    #form="dynamicForm">
+    </dynamic-form>
+  </div>
+</div>

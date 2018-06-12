@@ -1,0 +1,12 @@
+<div class="form-group row" [ngClass]="containerCss" [formGroup]="group">
+  <label [ngClass]="labelWidth">{{ label | translate }}</label>
+  <div [ngClass]="controlWidth">
+    <select [ngClass]="cssClass" [formControlName]="name" [attr.disabled]="isDisabled()">
+      <option value="">{{ placeholder }}</option>
+      <option [attr.value]="option.value" [attr.disabled]="option.disabled" *ngFor="let option of options">
+        {{ option.label }}
+      </option>
+    </select>
+    <form-display-errors [errors]="errors"></form-display-errors>
+  </div>
+</div>

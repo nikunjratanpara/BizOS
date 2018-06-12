@@ -1,0 +1,12 @@
+<div class="form-check" [ngClass]="containerCss" [formGroup]="group">
+    <legend class="col-form-label" [ngClass]="labelWidth">{{ label | translate }}</legend>
+  <div [ngClass]="controlWidth">
+    <div *ngFor="let option of options">
+      <input type="radio" class="form-check-input" [ngClass]="cssClass" [value]="option.value" [attr.name]="name" [attr.disabled] = "isDisabled()" [formControlName]="name" [attr.disabled]="option.disabled">
+      <label class="form-check-label">  
+        {{option.label}}
+      </label>
+    </div>
+    <form-display-errors [errors]="errors"></form-display-errors>
+  </div>
+</div>

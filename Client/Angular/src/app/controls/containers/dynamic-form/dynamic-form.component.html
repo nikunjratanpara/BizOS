@@ -1,0 +1,13 @@
+<form class="dynamic-form row" [formGroup]="form" (submit)="handleSubmit($event)">
+  <div [ngClass]="cssLayoutCols" *ngFor="let field of config.controls;">
+    <ng-container  dynamicField [config]="field" [group]="form">
+    </ng-container>
+  </div>
+  <div class="col-md-10 offset-md-2">
+          <input type="button" class="btn btn-primary" id="btnSave" [ngClass]="btnSaveConfig.visible ? '' : 'hidden' " (click)="handleSaveClick($event)" value="{{btnSaveConfig.uiKey | translate}}" accesskey="S" />
+          <input type="button" class="btn btn-primary" id="btnUpdate" [ngClass]="btnUpdateConfig.visible ? '' : 'hidden' " (click)="handleUpdateClick($event)" value="{{btnUpdateConfig.uiKey | translate}}" accesskey="U" />
+          <input type="button" class="btn btn-danger" id="btnDelete" [ngClass]="btnDeleteConfig.visible ? '' : 'hidden' " (click)="handleDeleteClick($event)" value="{{btnDeleteConfig.uiKey | translate}}" accesskey="D" />
+          <input type="button" class="btn btn-primary" id="btnSearch" [ngClass]="btnSearchConfig.visible ? '' : 'hidden' " (click)="handleSearchClick($event)" value="{{btnSearchConfig.uiKey | translate}}" accesskey="R" />
+          <input type="button" class="btn btn-info" id="btnNew" [ngClass]="btnResetConfig.visible ? '' : 'hidden' " (click)="handleResetClick($event)" value="{{btnResetConfig.uiKey | translate}}" accesskey="N" />
+  </div>
+</form>

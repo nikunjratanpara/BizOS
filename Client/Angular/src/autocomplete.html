@@ -1,0 +1,95 @@
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>AccountSoft Autocomplete</title>
+    <base href="/">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <link href="./framework/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .typeahead ul {
+            list-style: none;
+            padding: 10px 0px;
+        }
+
+        .typeahead ul>li {
+            padding: 3px 10px;
+            background: #79bbd3;
+            border: 1px solid #ccc;
+            width: 944px;
+            border-radius: 3px;
+        }
+
+        .typeahead {
+            position: absolute;
+            top: 25px;
+            left: 0px;
+            list-style: none;
+            max-width: 150px;
+            overflow-x: auto;
+        }
+
+        .typeahead::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+            background-color: #F5F5F5;
+        }
+
+        .typeahead::-webkit-scrollbar {
+            width: 10px;
+            background-color: #F5F5F5;
+        }
+
+        .typeahead::-webkit-scrollbar-thumb {
+            background-color: #0ae;
+
+            background-image: -webkit-gradient(linear, 0 0, 0 100%,
+            color-stop(.5, rgba(255, 255, 255, .2)),
+            color-stop(.5, transparent), to(transparent));
+        }
+    </style>
+</head>
+
+<body class="container-fluit">
+    <div class="row">
+        <div class="col-md-6">
+            <input class="form-control" type="text" />
+        </div>
+        <div class="col-md-6">
+            <input class="form-control" type="text" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <input class="form-control" type="text" />
+        </div>
+        <div class="col-md-6">
+            <input class="form-control" type="text" />
+        </div>
+    </div>
+<di
+    <div class="typeahead dropdown-menu" style="display:block;" role="listbox">
+        <button type="button" class="dropdown-item" role="option">
+              <span>Code</span> 
+               - 
+              <span>Description</span>
+          </button>
+        <button type="button" class="dropdown-item" role="option">
+                <span>Code</span> 
+                 - 
+                <span>Description</span>
+            </button>
+        <button type="button" class="dropdown-item" role="option">
+                    <span>Code</span> 
+                     - 
+                    <span>Description</span>
+                </button>
+        <button type="button" class="dropdown-item" role="option">
+                        <span>Code</span> 
+                         -                      <span>Description</span>
+                    </button>
+    </div>
+</body>
+
+</html>

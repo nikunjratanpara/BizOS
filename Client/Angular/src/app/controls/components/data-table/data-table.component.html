@@ -1,0 +1,70 @@
+<!--<table class="table table-hover">
+  <thead class="thead-default">
+    <tr>
+      <ng-template ngFor [ngForOf]="config.cols" let-columnHeaderDef>
+          <th>
+              {{columnHeaderDef.header | translate}} 
+          </th>
+        </ng-template>
+      </tr>
+  </thead>
+<tbody>
+<ng-template ngFor [ngForOf]="dataset" let-rowData let-idx="index">
+  <tr>
+    <ng-template ngFor [ngForOf]="config.cols" let-columnDef>
+      <td>
+        {{rowData[columnDef.columnName]}}
+      </td>
+    </ng-template>
+  </tr>
+</ng-template>
+</tbody>
+</table> -->
+
+<dynamic-form [config]="config.searchConfig" (onSearch)="onSearch($event)" #searchForm="dynamicForm">
+</dynamic-form>
+<div class="divider"></div>
+<table class="bordered responsive-table table-sm nomargin" style="height:100px;">
+  <!--<thead class="thead-default">
+      <tr>
+          <ng-template ngFor [ngForOf]="config.cols" let-col>
+          <th  [attr.colspan]="col.colSpan" [attr.class]="col.cssClass" [attr.align]="col.align" >
+              {{col.header}}
+          </th>
+          </ng-template>
+      </tr>
+  </thead>-->
+  <tbody>
+      <ng-template ngFor [ngForOf]="dataset" let-rowData let-idx="index">
+      <tr (click)="onRowSelect(rowData,idx)" [ngClass]="activeIdx === idx ? 'selected' : ''">
+          <ng-template ngFor [ngForOf]="config.cols" let-column>
+          <td [attr.data-th]="column.header" [attr.colspan]="column.colSpan" 
+                                                          [attr.class]="column.cssClass" [attr.align]="column.align" >
+              <data-grid-cell [column]="column" [model]="rowData"></data-grid-cell>
+          </td>
+          </ng-template>
+      </tr>
+      </ng-template>
+  </tbody>
+</table>
+<!--<div class="card blue-grey darken-1 nomargin">
+  <div class="card-content white-text">
+    <ng-template ngFor [ngForOf]="config.cols" let-col>
+      <div [attr.class]="'col m'+col.colSpan">
+        {{col.header}}
+      </div>
+    </ng-template>
+  </div>
+</div>-->
+ 
+ <!--     <ng-template ngFor [ngForOf]="dataset" let-rowData let-idx="index">
+          <div class="card-margin card blue-grey darken-1">
+      <div class="card-content white-text valign-wrapper" (click)="onRowSelect(rowData,idx)" [ngClass]="activeIdx === idx ? 'selected' : ''">
+          <ng-template ngFor [ngForOf]="config.cols" let-column>
+              <div [attr.class]="'col m'+column.colSpan">
+              <data-grid-cell [column]="column" [model]="rowData"></data-grid-cell>
+              </div>
+          </ng-template>
+        </div>
+      </div>
+      </ng-template> -->

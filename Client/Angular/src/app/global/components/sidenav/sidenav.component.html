@@ -1,0 +1,5 @@
+<nav class="col-sm-3 col-md-2 hidden-xs-down bg-faded sidebar content-overflow" *ngIf="visible">
+    <ul class="nav nav-pills flex-column">
+        <app-menu *ngFor="let menu of config" [config]="menu" [toggelMenu]="toggelMenu"></app-menu>
+    </ul>
+</nav>

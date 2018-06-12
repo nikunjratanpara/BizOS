@@ -1,0 +1,28 @@
+<div class="form-row">
+    <div class="col-md-5 col-sm-12">
+        Showing {{ getMin }} to {{ getMax }} of {{totalRecords}} entries
+    </div>
+    <div class="col-md-2 col-sm-12">
+        <form class="row"  (submit)="onChange()">
+            <label class="col-md-6 col-form-label">Go To:</label>
+                <input [type]="'text'" name="PageNo" class="col-md-5 text-center form-control" autocomplete="off" [(ngModel)]="page" (blur)="onChange()">
+        </form>
+    </div>
+    <div class="col-md-5 col-sm-12 text-right">
+        <ul class="pagination">
+            <li (click)="previousPage()" [class.disabled]="pageNo == 1" class="page-item">
+                <a class="page-link">
+                    <i class="fa fa-chevron-left"></i>
+                </a>
+            </li>
+            <li class="page-item" *ngFor="let pageNum of getPages()" (click)="goToPage(pageNum)" [ngClass]="{'active': pageNum === PageNo, 'disabled': loading}">
+                <a class="page-link">{{ pageNum }}</a>
+            </li>
+            <li (click)="nextPage()" [class.disabled]="isLastPage" class="page-item">
+                <a class="page-link">
+                    <i class="fa fa-chevron-right"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

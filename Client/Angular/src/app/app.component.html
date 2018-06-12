@@ -1,0 +1,12 @@
+<div>
+    <div class="row no-padding">
+        <div class="col-sm-12 no-padding">
+            <app-top-nav (menuClick)="toggelSideNav()"></app-top-nav>
+        </div>
+        <app-side-nav [toggelMenu]="toggelMenu"></app-side-nav>
+        <div class="container-fluid">
+            <app-main-content></app-main-content>
+        </div>
+    </div>
+    <div style="opacity:1;" [style.display]="toggelMenu.getValue()?'block':'none'"></div>
+</div>

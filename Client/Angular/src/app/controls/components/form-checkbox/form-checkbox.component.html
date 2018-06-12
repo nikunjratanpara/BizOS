@@ -1,0 +1,10 @@
+<div class="form-check" [ngClass]="containerCss" [formGroup]="group">
+  <div [ngClass]="controlWidth" class="offset-m3">
+      <input type="checkbox" class="form-check-input" [ngClass]="cssClass" [attr.disabled]="isDisabled()" [formControlName]="name" />
+      <label class="form-check-label">
+       {{label | translate}}
+    </label>
+    <form-display-errors [errors]="errors"></form-display-errors>
+  </div>
+  
+</div>

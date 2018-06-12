@@ -1,0 +1,10 @@
+<div class="form-group row" [ngClass]="containerCss" [formGroup]="group">
+  <label [ngClass]="labelWidth">{{ label | translate }}</label>
+  <div [ngClass]="controlWidth">
+    <input datetime [attr.disabled] = "isDisabled()" [config]="datetimePickerOptions" [toggelOpen]="toggelOpen.asObservable()"  type="text" [ngClass]="cssClass" class="form-control" [attr.placeholder]="placeholder" [(ngModel)]="value" [formControlName]="name">
+    <label class="icon" for="textbox">
+      <i class="fa fa-calendar" aria-hidden="true" (click)="openDatepicker()"></i>
+    </label>
+    <form-display-errors [errors]="errors"></form-display-errors>
+  </div>
+</div>

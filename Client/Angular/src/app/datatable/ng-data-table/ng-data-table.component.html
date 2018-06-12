@@ -1,0 +1,36 @@
+<table class="table responsive-table highlight bordered">
+    <caption> {{options.caption}} </caption>
+    <thead>
+        <tr>
+            <ng-template ngFor [ngForOf]="options.columns" let-column>
+                <th>
+                    {{column.header}}
+                </th>
+            </ng-template>
+            <th class="right-align"> Actions </th>
+        </tr>
+    </thead>
+    <tbody>
+        <ng-template ngFor [ngForOf]="dataSet" let-rowData let-idx="index">
+            <tr (click)="onRowSelect(rowData,idx)" [ngClass]="activeIdx === idx ? 'selected' : ''">
+                <ng-template ngFor [ngForOf]="options.columns" let-column>
+                    <td>
+                        {{rowData[column.dataField]}}
+                    </td>
+                </ng-template>
+                <td class="right-align">
+                    <span class="clickable">
+                        <i class="fa fa-edit" aria-hidden="true"></i>
+                    </span>
+                    <span class="clickable">
+                        <i class="fa fa-trash" aria-hidden="true"></i>
+                    </span>
+                </td>
+            </tr>
+        </ng-template>
+    </tbody>
+</table>
+<app-ng-data-table-pagination [pageNo] = "pageNo" [pageSize] = "options.pageSize" [totalRecords]="totalRecords" (onPageChange)="onPageChange($event)" ></app-ng-data-table-pagination>
+
+<!--<app-ng-data-header-cell [column]="column"></app-ng-data-header-cell>-->
+<!---->

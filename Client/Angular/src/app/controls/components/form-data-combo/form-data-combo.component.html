@@ -1,0 +1,10 @@
+<div class="form-group row" [ngClass]="containerCss" [formGroup]="group">
+    <label [ngClass]="labelWidth">{{ label | translate }}</label>
+    <div [ngClass]="controlWidth">
+    <input typeahead [source]="search" [formatter]="format" [catalogId]="typeaheadOptions.catId" [attr.disabled]="isDisabled()"
+      type="text" [ngClass]="cssClass" class="typeahead form-control" [attr.placeholder]="placeholder" [(ngModel)]="value"
+      [formControlName]="name">
+    <i class="fa fa-chevron-down icon" aria-hidden="true" (click)="showAllOptions()"></i>
+    <form-display-errors [errors]="errors"></form-display-errors>
+  </div>
+</div>

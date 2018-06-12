@@ -1,0 +1,17 @@
+<li class="nav-item" *ngIf="config && config.component" (click)="navigateTo(config)">
+    <a class="nav-link">{{config.name}}</a>
+</li>
+<li class="no-padding" *ngIf=" config && config.children && config.children.length">
+    <ul class="nav nav-pills flex-column">
+        <li class="nav-item">
+            <a class="nav-link" (click)="showChildren = !showChildren">
+                {{config.name}}
+                <i [class]="showChildren ? 'fa fa-chevron-down right':' fa fa-chevron-right right'" style="font-size:24px"></i>
+            </a>
+                <ul class="nav nav-pills flex-column">
+                    <app-menu *ngFor="let menu of config.children" [config]="menu" [toggelMenu]="toggelMenu"></app-menu>
+                </ul>
+        </li>
+    </ul>
+
+</li>

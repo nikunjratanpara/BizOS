@@ -1,0 +1,145 @@
+/* You can add global styles to this file, and also import other style files */
+$selectedBackColor :#2196f3;
+ .typeahead-dropdown-menu {
+  position: absolute;
+    top: 100%;
+    left: 0;
+    z-index: 1000;
+    display: none;
+    float: left;
+    min-width: 10rem;
+    padding: .5rem 0;
+    margin: .125rem 0 0;
+    font-size: 1rem;
+    color: #212529;
+    text-align: left;
+    list-style: none;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: .25rem;
+}
+.typeahead-dropdown-item {
+  display: block;
+  width: 100%;
+  padding: .25rem 1.5rem;
+  clear: both;
+  font-weight: 400;
+  color: #212529;
+  text-align: inherit;
+  white-space: nowrap;
+  background-color: transparent;
+  border: 0;
+} 
+td.right-align th.right-align {
+  padding-right: 1rem;
+}
+.clickable.disabled {
+  cursor: no-drop;
+}
+.clickable {
+  cursor: pointer;
+}
+.fa {
+  /*color: $selectedBackColor;*/
+  font-size: 19px;
+}
+.pagination li.active {
+  background-color: $selectedBackColor !important;
+}
+.pagination-text {
+  margin-top: 1rem;
+  padding: 0.3rem 0rem !important;
+}
+.data-combo-dropdown {
+    max-height: 200px;
+    overflow: auto;
+  }
+  .dropdown-item {
+    display: block;
+    padding: 5px 5px;
+    text-decoration: none;
+    color: black;
+  }
+  .selected {
+    background-color: $selectedBackColor; 
+    border-radius: 5px;
+  }
+  .selectable {
+    cursor: pointer;
+  }
+  .table-sm tr td, th {
+    padding: 3px 5px;
+  }
+  .table-sm tr td, th :first  {
+    border-radius: 5px;
+  }
+
+  .row-margin-bottom {
+    margin-bottom: 10px !important;
+  }
+  .card-content {
+    border-radius: 5px !important;
+    padding: 10px !important;
+  }
+  .card-margin {
+    margin: 0.3rem 0 0.3rem 0 !important;
+  }
+
+  .divTable{
+    display: table;
+    width: 100%;
+  }
+  .divTableRow {
+    display: table-row;
+  }
+  .divTableHeading {
+    background-color: #EEE;
+    display: table-header-group;
+  }
+  .divTableCell, .divTableHead {
+    border: 1px solid #999999;
+    display: table-cell;
+    padding: 3px 10px;
+  }
+  .divTableHeading {
+    background-color: #EEE;
+    display: table-header-group;
+    font-weight: bold;
+  }
+  .divTableFoot {
+    background-color: #EEE;
+    display: table-footer-group;
+    font-weight: bold;
+  }
+  .divTableBody {
+    display: table-row-group;
+  }
+  .top-nav-height {
+    top: 65px;
+}
+.side-nav {
+  top : 65px !important;
+}
+.side-nav ul li a {
+  cursor: pointer;
+}
+.padding-10lr {
+  padding: 0px 10px;
+}
+.sidebar {
+  top: 56px;
+  position: absolute;
+  background: gray;
+  height: 100%;
+  z-index: 1;
+}
+
+.icon {
+  position: absolute;
+  top: 5px;
+  right: 25px;
+  display: inline-block;
+  z-index: 1;
+  font-size: 25px;
+}

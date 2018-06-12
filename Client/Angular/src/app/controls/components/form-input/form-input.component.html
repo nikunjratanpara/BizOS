@@ -1,0 +1,9 @@
+
+  <div class="form-group row" [ngClass]="containerCss" [formGroup]="group">
+    <label [ngClass]="labelWidth">{{ label | translate }}</label>
+    <div [ngClass]="controlWidth">
+      <input [type]="type" [ngClass]="cssClass" [attr.disabled]="isDisabled()" [attr.placeholder]="placeholder" [formControlName]="name"
+        [value]="value">
+      <form-display-errors [errors]="this.control.errors"></form-display-errors>
+    </div>
+  </div>

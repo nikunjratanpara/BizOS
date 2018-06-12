@@ -1,0 +1,5 @@
+<tbody *ngIf="dataSet && dataSet.length">
+  <ng-template ngFor [ngForOf]="dataSet" let-rowData>
+    <app-ng-data-row [columns]="columns" [data]="rowData"></app-ng-data-row>
+  </ng-template>
+</tbody>

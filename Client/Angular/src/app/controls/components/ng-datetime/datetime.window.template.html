@@ -1,0 +1,20 @@
+<div class="datetimepicker">
+<datepicker-navigation [currentSelected]="currentSelected" [config]="config" (navigate)="onNavigateEvent($event)">
+</datepicker-navigation>
+<table class="table">
+    <thead>
+        <tr>
+            <th *ngFor="let weekday of i18n.weekDaysShortName">
+                {{weekday}}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let week of month.calender">
+            <td *ngFor="let date of week" (click)="selectDate(date)" [ngClass]="{'bg-info': isCurrentSelected(date)}">
+                {{date && date.day || ''}}
+            </td>
+        </tr>
+    </tbody>
+</table>
+</div>

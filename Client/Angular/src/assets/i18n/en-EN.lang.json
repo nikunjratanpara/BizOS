@@ -1,0 +1,27 @@
+{
+    "calender":{
+        "monthShortNames": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+        "monthFullNames": ["January", "February", "March", "April", "May", "June","July", "August", "September", "October", "November", "December"],
+        "weekDaysShortName": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+    },
+    "defaults": {
+        "align": "left",
+        "thousandSeparator": ",",
+        "decimalSeparator": ".",
+        "decimalPlaces": 2
+    },
+    "token" : {
+        "Invalid_minDate" : "Value can not be before {0}.",
+        "Invalid_maxDate" : "Value can not be after {0}.",
+        "Invalid_minNumber" : "Value can not be less than {0}.",
+        "Invalid_maxNumber" : "Value can not be greater than {0}.",
+        "Invalid_required": "Value required.",
+        "COMMON.BTN.SAVE": "Save",
+        "COMMON.BTN.CANCEL": "Cancel",
+        "COMMON.BTN.UPDATE": "Update",
+        "COMMON.BTN.DELETE": "Delete",
+        "COMMON.BTN.RESET": "New",
+        "COMMON.BTN.SEARCH": "Search",
+        "COMMON.BTN.CLEAR" : "Clear"
+    }
+}
