@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, OnChanges,SimpleChanges } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuConfig } from '../../models/menu.model';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-menu',

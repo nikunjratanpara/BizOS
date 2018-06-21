@@ -1,7 +1,4 @@
-import { Component, Input, HostListener, HostBinding, OnInit, Output, EventEmitter, OnDestroy, ElementRef } from '@angular/core';
-import { IComboFormatter } from '../../models/combo.formatter.interface';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/subscription';
+import { Component, Input, HostBinding,  Output, EventEmitter,  ElementRef } from '@angular/core';
 import { ICatalogData } from '../../models/catalog.data.interface';
 
 
@@ -22,7 +19,6 @@ import { ICatalogData } from '../../models/catalog.data.interface';
 })
 export class TypeaheadWindowComponent {
     activeIdx: number;
-    subscription: Subscription;
     get activeResult(): ICatalogData {
         if (this.dataset && this.dataset.length > 0) {
             return this.dataset[this.activeIdx];

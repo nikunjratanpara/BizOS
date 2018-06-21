@@ -1,13 +1,11 @@
 import { Component, OnInit, forwardRef, HostListener } from '@angular/core';
 import { BaseControlComponent } from '../base-control-component/base.control.component';
-import { ITypeaheadOptions, ComboDisplayStyle } from '../../models/typeaheadOptions.interface';
+import { ComboDisplayStyle } from '../../models/typeaheadOptions.interface';
 import { DataComboService } from '../../services/data-combo/data-combo.service';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR, FormBuilder } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
-import { letProto } from 'rxjs/operator/let';
+import { NG_VALUE_ACCESSOR, FormBuilder } from '@angular/forms';
+import { Observable, Subject, merge, of } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { ICatalogFilterOptions } from '../../services/models/catalog.filter.interface';
-import { fromEvent } from 'rxjs/observable/fromEvent';
-import { Subject } from 'rxjs/Subject';
 import { Key } from '../../models/common.enums';
 import { ICatalogData } from '../../models/catalog.data.interface';
 
@@ -50,13 +48,12 @@ export class FormDataComboComponent extends BaseControlComponent implements OnIn
   }
   public search = (query: Observable<ICatalogFilterOptions>): Observable<ICatalogData[]> => {
     this.optionProvider = query;
-     return this.optionProvider.
-     merge(this.allOptionProvider.asObservable()).
-     debounceTime(300).
-     distinctUntilChanged().
-     switchMap(option => {
+     return merge(this.optionProvider, this.allOptionProvider.asObservable()).pipe(
+     debounceTime(300),
+     distinctUntilChanged(),
+     switchMap((option: ICatalogFilterOptions) => {
       return this.getOptions(option);
-    });
+    }));
   }
 public showAllOptions() {
   if  (!this.isDisabled()) {
@@ -70,7 +67,7 @@ private getOptions(option: ICatalogFilterOptions) {
     }
     return this.dataComboService.getCatalogData({ catalogId: this.typeaheadOptions.catId, filter: option });
   } else {
-    return Observable.of([]);
+    return of([]);
   }
 }
   private formatter(comboDisplayStyle: ComboDisplayStyle): (comboItem: ICatalogData) => string {

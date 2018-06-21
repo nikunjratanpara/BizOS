@@ -1,9 +1,8 @@
 import { Component, OnInit, Input, OnDestroy, OnChanges, EventEmitter, Output } from '@angular/core';
 import { IDataGridSettings, IDataSource, IDataGridColumn, IGridOutcome } from '../models/data-grid.models';
 import { DataTableService } from '../../controls/services/data-table/data-table.service';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subscription } from 'rxjs/subscription';
-import { Observable } from 'rxjs/Observable';
+import { BehaviorSubject, Subscription, Observable} from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 @Component({
     selector: 'app-ng-data-table',
@@ -23,7 +22,6 @@ export class NgDataTableComponent implements OnInit, OnChanges, OnDestroy {
     totalRecords = 0;
 
     private queryData: BehaviorSubject<IDataSource> = new BehaviorSubject<IDataSource>(null);
-    private dataObservable: Observable<IGridOutcome>;
     private columnSubject: BehaviorSubject<IDataGridColumn[]> = new BehaviorSubject<IDataGridColumn[]>(null);
     private dataSet: any[];
     private dataSubscription: Subscription;
@@ -31,10 +29,9 @@ export class NgDataTableComponent implements OnInit, OnChanges, OnDestroy {
 
     ngOnInit() {
         this.initSource();
-        this.dataObservable = this.queryData.switchMap(
-            (sourceConfiguration: IDataSource) => this.reload(sourceConfiguration)
-        );
-        this.dataSubscription = this.dataObservable.subscribe(data => {
+        this.dataSubscription = this.queryData.pipe(
+            switchMap((sourceConfiguration: IDataSource) => this.reload(sourceConfiguration))
+        ).subscribe(data => {
             this.dataSet = data.resultSet;
             this.totalRecords = data.totalRecords;
             this.activeIdx = -1;

@@ -1,7 +1,6 @@
 import { Component, OnInit, forwardRef } from '@angular/core';
 import { BaseControlComponent } from '../base-control-component/base.control.component';
-import { Observable } from 'rxjs/Observable';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { NG_VALUE_ACCESSOR, FormBuilder } from '@angular/forms';
 
 export const DATE_PICKER_CONTROL_VALUE_ACCESSOR: any = {

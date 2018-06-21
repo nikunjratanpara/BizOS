@@ -3,13 +3,6 @@ import {
   OnDestroy, Input, TemplateRef, HostListener, ViewContainerRef,
   NgZone, ComponentFactoryResolver, ComponentRef, Injector, Renderer2
 } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
-import { Subscription } from 'rxjs/subscription';
-import { fromEvent } from 'rxjs/observable/fromEvent';
-import { _do } from 'rxjs/operator/do';
-import { letProto } from 'rxjs/operator/let';
-import { switchMap } from 'rxjs/operator/switchMap';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TypeaheadWindowComponent } from './typeahead.window.component';
 import { positionService } from '../../services/position.service';
@@ -21,6 +14,8 @@ import { ICatalogFilterOptions } from '../../services/models/catalog.filter.inte
 import { Key } from '../../models/common.enums';
 import { ICatalogData } from '../../models/catalog.data.interface';
 import { DataComboService } from '../../services/data-combo/data-combo.service';
+import { Observable, BehaviorSubject, Subscription, fromEvent } from 'rxjs';
+import { tap, switchMap } from 'rxjs/operators';
 
 
 export interface TypeaheadSelectItemEvent {
@@ -58,7 +53,7 @@ export class NgTypeaheadDirective implements OnInit, OnDestroy, ControlValueAcce
   selectItem: EventEmitter<TypeaheadSelectItemEvent> = new EventEmitter<TypeaheadSelectItemEvent>();
   private popupService: PopupService<TypeaheadWindowComponent>;
   private _windowRef: ComponentRef<TypeaheadWindowComponent>;
-  private _valueChanges: Observable<ICatalogFilterOptions>;
+  private _valueChanges: Observable<string>;
   private _resubscribeSource: BehaviorSubject<any>;
   private subscription: Subscription;
   private _userValue: string;
@@ -110,15 +105,15 @@ export class NgTypeaheadDirective implements OnInit, OnDestroy, ControlValueAcce
     // create observable for user input on element.
     this._valueChanges = fromEvent(this.el.nativeElement, 'input', $event => $event.target.value);
     // call onChange registered function on Each Change
-    const inputValues$: ICatalogFilterOptions = _do.call(this._valueChanges, value => {
-      console.dir(value);
-      //this._userValue = value;
-      this._onChange(value);
-    });
+    const inputValues$: Observable<string> = this._valueChanges.pipe(
+      tap( value =>  this._onChange(value))
+    );
     // call passed api with user input and returns new observale with results.
-    const results$ = letProto.call(inputValues$, this.source);
+    const results$ = this.source(inputValues$);
+    // inputValues$.pipe(letProto.call(inputValues$, this.source);
     // assign results to behavior subject and returns new observable from behaviour subject.
-    const processedResults$ = switchMap.call(this._resubscribeSource, () => results$);
+    const processedResults$ = this._resubscribeSource.pipe(switchMap(() => results$)); 
+    // const processedResults$ = switchMap.call(this._resubscribeSource, () => results$);
     this.subscription = this._subscribeToUserInput(processedResults$);
 
     this.popupService = new PopupService<TypeaheadWindowComponent>(TypeaheadWindowComponent,

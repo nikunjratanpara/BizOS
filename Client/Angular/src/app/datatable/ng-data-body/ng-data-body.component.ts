@@ -1,8 +1,8 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
 import { IDataGridColumn } from '../models/data-grid.models';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Subscription } from 'rxjs';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-ng-data-body',

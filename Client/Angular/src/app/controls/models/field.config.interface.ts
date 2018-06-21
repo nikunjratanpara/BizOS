@@ -2,10 +2,6 @@ import { ValidatorFn } from '@angular/forms';
 import { IOption } from './option.interface';
 import { ITypeaheadOptions } from './typeaheadOptions.interface';
 import { IDatetimePickerOptions } from '../components/ng-datetime/datetime.struct';
-import { Observable } from 'rxjs/Observable';
-import { DATA_COMBO_CONTROL_VALUE_ACCESSOR } from '../components/form-data-combo/form-data-combo.component';
-import { observableToBeFn } from 'rxjs/testing/TestScheduler';
-import { extend } from '../utils/util';
 
 export interface IFormConfig {
     formName: string;

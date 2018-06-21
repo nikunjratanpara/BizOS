@@ -2,8 +2,8 @@ import { Component, OnInit, Input, OnChanges, OnDestroy } from '@angular/core';
 import { IDataGridColumn } from '../models/data-grid.models';
 import { IColGroup } from '../../controls/components/data-table';
 import { forEach } from '@angular/router/src/utils/collection';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
-import { Subscription } from 'rxjs/subscription';
+import { BehaviorSubject } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-ng-data-header',

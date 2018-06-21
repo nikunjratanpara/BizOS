@@ -4,17 +4,12 @@ import {
 } from '@angular/core';
 import { PopupService } from '../../services/popup.service';
 import { DatetimeWindowComponent } from './datetime.window.component';
-import { element } from 'protractor';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { NgDatetime, IDatetimePickerOptions } from './datetime.struct';
-import { NgbPeriod, CalendarService } from './calender.service';
-import { Observable } from 'rxjs/Observable';
+import { Observable, Subscription, fromEvent } from 'rxjs';
 import { Input, ComponentRef, forwardRef } from '@angular/core';
-import { Subscription } from 'rxjs/subscription';
 import { Key } from '../../models/common.enums';
 import { toString, isValidDate, formatDate, createJSDateFromString } from '../../utils/util';
-import { _do } from 'rxjs/operator/do';
-import { fromEvent } from 'rxjs/observable/fromEvent';
 
 const DATE_PICKER_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,

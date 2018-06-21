@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { NgDatetime } from './datetime.struct';
-import { fromEvent } from 'rxjs/observable/fromEvent';
 
 export class MonthViewModel {
   calender: Array<Array<NgDatetime>>;

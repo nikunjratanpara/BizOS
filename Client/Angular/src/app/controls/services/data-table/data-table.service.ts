@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable, of } from 'rxjs';
 import { IDataTableService } from './data.table.service.interface';
 import { BaseService } from '../base.service';
 import { IDataTableConfig } from '../../components/data-table/models/dataTableConfig.model';
 import { IDataSource, IGridOutcome } from '../../../datatable/models/data-grid.models';
 import { HttpClient } from '@angular/common/http';
+import { catchError } from 'rxjs/operators';
 
 @Injectable()
 export class DataTableService extends BaseService implements IDataTableService {
@@ -16,18 +17,17 @@ export class DataTableService extends BaseService implements IDataTableService {
       return this.getData(sourceConfiguration);
   }
   getGridConfig(gridConfigId: string): Observable<IDataTableConfig> {
-    return this.httpClient.get(this.getUrl(gridConfigId))
-    .catch(this.handleError);
+    return this.httpClient.get<IDataTableConfig>(this.getUrl(gridConfigId)).pipe(catchError(this.handleError));
   }
-  private getData(sourceConfiguration: IDataSource) {
+  private getData(sourceConfiguration: IDataSource): Observable<IGridOutcome> {
     if (sourceConfiguration) {
       const requestPayload = {
         body: sourceConfiguration.requestPayload
       };
-      return this.httpClient.request(sourceConfiguration.method, this.appendBaseUrl(sourceConfiguration.url), requestPayload)
-      .catch(this.handleError);
+      return this.httpClient.request<IGridOutcome>(sourceConfiguration.method, this.appendBaseUrl(sourceConfiguration.url), requestPayload)
+      .pipe(catchError(this.handleError));
     } else {
-      return Observable.of([]);
+      return of<IGridOutcome>();
     }
   }
 }

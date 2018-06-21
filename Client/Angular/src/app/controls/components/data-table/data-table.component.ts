@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, EventEmitter, Output, OnChanges, OnDestroy, ViewChild } from '@angular/core';
 import { IDataTableConfig, IDataRequestModel } from './models/dataTableConfig.model';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject, Subscription, Observable, of  } from 'rxjs';
 import { ICatalogFilterOptions } from '../../services/models/catalog.filter.interface';
 import { formatDate, extend, stringify } from '../../utils/util';
 import { IColModel } from './models/IColModel';
@@ -10,12 +10,10 @@ import { INumberFormatOptions } from './models/INumberFormatOptions';
 import { IFormatOptions } from './models/IFormatOptions';
 import { HttpModule } from '@angular/http';
 import { DataTableService } from '../../services/data-table/data-table.service';
-import { Subject } from 'rxjs/Subject';
-import { Subscription } from 'rxjs/subscription';
-import { switchMap } from 'rxjs/operator/switchMap';
+import { switchMap } from 'rxjs/operators';
 import { ISourceConfiguration } from './models/ISourceConfiguration';
 import { validateConfig } from '@angular/router/src/config';
-import { Observable } from 'rxjs/Observable';
+
 import { DynamicFormComponent } from '../../containers/dynamic-form/dynamic-form.component';
 import { setRootDomAdapter } from '@angular/platform-browser/src/dom/dom_adapter';
 import { forEach } from '@angular/router/src/utils/collection';
@@ -59,8 +57,8 @@ export class DataTableComponent implements OnInit, OnChanges, OnDestroy {
                 }
             };
         }
-        this.sourceSubscription =  this.queryData.switchMap(
-            (sourceConfiguration: ISourceConfiguration) =>  this.reload(sourceConfiguration)
+        this.sourceSubscription =  this.queryData.pipe(
+            switchMap((sourceConfiguration: ISourceConfiguration) =>  this.reload(sourceConfiguration))
         ).
         subscribe(resultset => this.dataset = resultset);
         this.queryData.next(this.config.source);
@@ -85,7 +83,7 @@ export class DataTableComponent implements OnInit, OnChanges, OnDestroy {
         }
         this.config.source.parameters = filter ;
         this.queryData.next(this.config.source);
-        return Observable.of(true);
+        return of(true);
     }
     onRowSelect(model: any, index: number) {
         this.activeIdx = index;
@@ -96,7 +94,7 @@ export class DataTableComponent implements OnInit, OnChanges, OnDestroy {
     }
     private reload(sourceConfiguration: ISourceConfiguration): Observable<any[]> {
         // return this.dataTableService.getSourceObservable(sourceConfiguration);
-        return Observable.of([]);
+        return of([]);
     }
     private getRenderer(colModel: IColModel): IFormatter {
         let renderer: IFormatter;

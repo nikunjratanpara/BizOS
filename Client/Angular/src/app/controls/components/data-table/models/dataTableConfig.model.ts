@@ -1,4 +1,3 @@
-import { Observable } from 'rxjs/Observable';
 import { IColModel } from './IColModel';
 import { ISourceConfiguration } from './ISourceConfiguration';
 import { IFormConfig } from '../../../models/field.config.interface';

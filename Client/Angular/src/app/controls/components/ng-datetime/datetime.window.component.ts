@@ -4,7 +4,7 @@ import { CalendarService, MonthViewModel, NgbPeriod } from './calender.service';
 import { TranslateService } from '../../services/translate.service';
 import { I18N, CalenderI18n } from '../../i18N/calenderi18n.model';
 import { NgDatetime, NavigationEvent, IDatetimePickerOptions } from './datetime.struct';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { isValidDate, ISODateFormat } from '../../utils/util';
 @Component({
     selector: 'datetime-window',

@@ -1,7 +1,5 @@
 import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
-import { Validators } from '@angular/forms';
-import { Observable } from 'rxjs/Observable';
-import { setTimeout } from 'timers';
+import { Observable, of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { DynamicFormComponent } from '../../../controls/containers/dynamic-form/dynamic-form.component';
 import { IFormConfig } from '../../../controls/models/field.config.interface';
@@ -104,7 +102,7 @@ export class CatalogFormComponent implements AfterViewInit, OnInit {
   }
   onReset(model: any): Observable<boolean> {
     this.toggelButtons(true);
-    return Observable.of(true);
+    return of(true);
   }
   onUpdate(model: any): Observable<boolean> {
     const updateObservable: Observable<boolean> = this.dynamicFormService.update(this.formName, model);

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, OnDestroy } from '@angular/core';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { BehaviorSubject } from 'rxjs';
 import { Subscription } from 'rxjs';
 import { MenuConfig } from '../../models/menu.model';
 import { MenuService } from '../../services/menu.service';

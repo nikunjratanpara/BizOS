@@ -1,4 +1,4 @@
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 export class BaseService {
     protected baseUrl: string;
     protected getUrl(action: string): string {
