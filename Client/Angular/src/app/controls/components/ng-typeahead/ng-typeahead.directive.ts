@@ -1,21 +1,15 @@
 import {
   Directive, ElementRef, OnInit,
-  OnDestroy, Input, TemplateRef, HostListener, ViewContainerRef,
+  OnDestroy, Input,  HostListener, ViewContainerRef,
   NgZone, ComponentFactoryResolver, ComponentRef, Injector, Renderer2
 } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { TypeaheadWindowComponent } from './typeahead.window.component';
-import { positionService } from '../../services/position.service';
-import { element } from 'protractor';
 import { Output, EventEmitter, forwardRef } from '@angular/core';
 import { PopupService } from '../../services/popup.service';
-import { FormDataComboComponent } from '../form-data-combo/form-data-combo.component';
-import { ICatalogFilterOptions } from '../../services/models/catalog.filter.interface';
-import { Key } from '../../models/common.enums';
-import { ICatalogData } from '../../models/catalog.data.interface';
-import { DataComboService } from '../../services/data-combo/data-combo.service';
 import { Observable, BehaviorSubject, Subscription, fromEvent } from 'rxjs';
 import { tap, switchMap } from 'rxjs/operators';
+import { CatalogData, DataComboService, PositionService, Key } from '../../../biz-os-shared';
 
 
 export interface TypeaheadSelectItemEvent {
@@ -46,7 +40,7 @@ export class NgTypeaheadDirective implements OnInit, OnDestroy, ControlValueAcce
   @Input()
   source: (value: Observable<string>) => Observable<Array<any>>;
   @Input()
-  formatter: (comboItem: ICatalogData) => string;
+  formatter: (comboItem: CatalogData) => string;
   @Input()
   catalogId: string;
   @Output()
@@ -57,10 +51,11 @@ export class NgTypeaheadDirective implements OnInit, OnDestroy, ControlValueAcce
   private _resubscribeSource: BehaviorSubject<any>;
   private subscription: Subscription;
   private _userValue: string;
-  private value: ICatalogData;
+  private value: CatalogData;
+  private positionService = new PositionService();
   private _onChange: (value: any) => void = (value: any) => { };
   private _onTouched: () => any = () => { };
-
+ 
   constructor(private el: ElementRef,
     private viewContainerReference: ViewContainerRef,
     private ngZone: NgZone,
@@ -69,7 +64,7 @@ export class NgTypeaheadDirective implements OnInit, OnDestroy, ControlValueAcce
     private componentFactoryResolver: ComponentFactoryResolver, private dataComboService: DataComboService) {
     this._resubscribeSource = new BehaviorSubject(null);
   }
-  writeValue(value: ICatalogData | string) {
+  writeValue(value: CatalogData | string) {
     if (typeof (value) !== 'object') {
       if (!this.value || this.value.code !== value) {
         this.dataComboService.getCatalogData({
@@ -85,7 +80,7 @@ export class NgTypeaheadDirective implements OnInit, OnDestroy, ControlValueAcce
         this.write();
       }
     } else {
-      this.value = value as ICatalogData;
+      this.value = value as CatalogData;
       this.write();
     }
   }
@@ -123,7 +118,7 @@ export class NgTypeaheadDirective implements OnInit, OnDestroy, ControlValueAcce
 
     this.ngZone.onStable.subscribe(() => {
       if (this.isPopupOpen()) {
-        positionService.postionElememt(this.el.nativeElement, this._windowRef.location.nativeElement, 'bottom-left', true);
+        this.positionService.postionElememt(this.el.nativeElement, this._windowRef.location.nativeElement, 'bottom-left', true);
       }
     });
 
@@ -177,7 +172,7 @@ export class NgTypeaheadDirective implements OnInit, OnDestroy, ControlValueAcce
   private _formatItemForInput(item: any): string {
     return item ? this.formatter ? this.formatter(item) : item : '';
   }
-  private _subscribeToUserInput(userInput$: Observable<ICatalogData[]>): Subscription {
+  private _subscribeToUserInput(userInput$: Observable<CatalogData[]>): Subscription {
     return userInput$.subscribe((results) => {
       this._windowRef = this.popupService.open();
       this._windowRef.instance.formatter = this.formatter;
@@ -195,7 +190,7 @@ export class NgTypeaheadDirective implements OnInit, OnDestroy, ControlValueAcce
     });
   }
 
-  private _selectResult(result: ICatalogData) {
+  private _selectResult(result: CatalogData) {
     let defaultPrevented = false;
     this.selectItem.emit({ item: result, preventDefault: () => { defaultPrevented = true; } });
     this._resubscribeSource.next(null);

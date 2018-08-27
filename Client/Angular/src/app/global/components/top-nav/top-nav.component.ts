@@ -1,5 +1,4 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { isFunction } from '../../../controls/utils/util';
 
 @Component({
   selector: 'app-top-nav',

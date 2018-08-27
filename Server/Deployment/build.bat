@@ -1,0 +1,2 @@
+xcopy /E /Y "E:\BizOS\Server\Deployment\Other dlls\netstandard2.0" "E:\BizOS\Server\Deployment\Framework\bin\" 
+xcopy /E /Y "E:\BizOS\Server\Deployment\Other dlls\netstandard2.0" "E:\BizOS\Server\Deployment\Core\netcoreapp2.1" 

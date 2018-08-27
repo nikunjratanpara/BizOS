@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <PackageReference Include="Unity.Abstractions" Version="3.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BizOS.Base.BL\BizOS.Base.BL.csproj" />
+    <ProjectReference Include="..\..\..\Contracts\BizOS.Common.Contracts\BizOS.Common.Contracts.csproj" />
+    <ProjectReference Include="..\..\..\Contracts\BizOS.Base.Contracts\BizOS.Base.Contracts.csproj" />
+    <ProjectReference Include="..\..\Utils\BizOS.Common\BizOS.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\newtonsoft.json\11.0.2\lib\netstandard2.0\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.AttributedModel">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\system.composition.attributedmodel\1.0.31\lib\netstandard1.0\System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>E:\BizOS\Server\Deployment\Other dlls</OutputPath>
+  </PropertyGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="E:\BizOS\Server\Deployment\build.bat" />
+  </Target>
+
+</Project>

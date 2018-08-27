@@ -1,5 +1,6 @@
 import { Component, Input, HostBinding,  Output, EventEmitter,  ElementRef } from '@angular/core';
-import { ICatalogData } from '../../models/catalog.data.interface';
+import { CatalogData } from '../../../biz-os-shared';
+
 
 
 @Component({
@@ -19,7 +20,8 @@ import { ICatalogData } from '../../models/catalog.data.interface';
 })
 export class TypeaheadWindowComponent {
     activeIdx: number;
-    get activeResult(): ICatalogData {
+    get activeResult(): CatalogData
+     {
         if (this.dataset && this.dataset.length > 0) {
             return this.dataset[this.activeIdx];
         }
@@ -37,13 +39,13 @@ export class TypeaheadWindowComponent {
     id: string;
 
     @Input('formatter')
-    formatter: (comboItem: ICatalogData) => string;
+    formatter: (comboItem: CatalogData) => string;
 
     @Input('dataset')
-    dataset: Array<ICatalogData>;
+    dataset: Array<CatalogData>;
 
     @Output('selectEvent')
-    selectEvent: EventEmitter<ICatalogData> = new EventEmitter<ICatalogData>();
+    selectEvent: EventEmitter<CatalogData> = new EventEmitter<CatalogData>();
 
     private optionHeight = 32;
     constructor(private element: ElementRef ) {}
@@ -66,7 +68,7 @@ export class TypeaheadWindowComponent {
     markActive(idx: number) {
         this.activeIdx = idx;
     }
-    select(comboItem: ICatalogData) {
+    select(comboItem: CatalogData) {
         this.selectEvent.emit(comboItem);
     }
     setScroll() {

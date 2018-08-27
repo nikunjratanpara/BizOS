@@ -1,11 +1,9 @@
 import { Component, Input, Inject, OnInit, EventEmitter } from '@angular/core';
 import { FormSelectComponent } from '../form-select/form-select.component';
 import { CalendarService, MonthViewModel, NgbPeriod } from './calender.service';
-import { TranslateService } from '../../services/translate.service';
-import { I18N, CalenderI18n } from '../../i18N/calenderi18n.model';
-import { NgDatetime, NavigationEvent, IDatetimePickerOptions } from './datetime.struct';
 import { Observable } from 'rxjs';
-import { isValidDate, ISODateFormat } from '../../utils/util';
+import { TranslateService, IDatetimePickerOptions, NgDatetime, isValidDate, ISODateFormat  } from '../../../biz-os-shared';
+import CalenderI18n from '../../../biz-os-shared/i18N/CalenderI18n';
 @Component({
     selector: 'datetime-window',
     templateUrl: './datetime.window.template.html',

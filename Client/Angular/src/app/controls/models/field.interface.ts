@@ -1,12 +1,12 @@
-
 import { FormGroup } from '@angular/forms';
-import { IFieldConfig } from './field.config.interface';
+import { FieldConfig } from '../../biz-os-shared';
 
-export interface IField extends IFieldConfig {
+
+export interface Field extends FieldConfig {
     group: FormGroup;
 }
 
-export interface IDynamicField {
-    config: IFieldConfig;
+export interface DynamicField {
+    config: FieldConfig;
     group: FormGroup;
 }

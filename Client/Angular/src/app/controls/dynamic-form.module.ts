@@ -16,20 +16,15 @@ import { TypeaheadWindowComponent } from './components/ng-typeahead/typeahead.wi
 import { FormDatetimeComponent } from './components/form-datetime/form-datetime.component';
 import { NgDatetimeDirective } from './components/ng-datetime/ng-datetime.directive';
 import { BrowserModule } from '@angular/platform-browser';
-import { TranslateService } from './services/translate.service';
 import { DatetimeWindowComponent } from './components/ng-datetime/datetime.window.component';
 import { DatepickerNavigationComponent } from './components/ng-datetime/ng-datetime.navigation.component';
 import { FormDisplayErrorsComponent } from './components/form-display-errors/form-display-errors.component';
 import { DataTableComponent } from './components/data-table/data-table.component';
 import { TranslatePipe } from './filters/translate.pipe';
 import { DataGridCellComponent } from './components/data-table/data-grid-cell.component';
-import { IDynamicFormService } from './services/dynamic-form/dynamic.form.service.interface';
-import { DynamicFormService } from './services/dynamic-form/dynamic-form.service';
-import { DataTableService } from './services/data-table/data-table.service';
-import { DataComboService } from './services/data-combo/data-combo.service';
-import { DynamicViewService } from './services/dynamic-view/dynamic-view.service';
 import { FormHiddenComponent } from './components/form-hidden/form-hidden.component';
 import { HttpClientModule } from '@angular/common/http';
+import { TranslateService, DynamicFormService, DataTableService, DataComboService, DynamicViewService } from '../biz-os-shared';
 
 @NgModule({
   imports: [

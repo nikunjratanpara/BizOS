@@ -1,11 +1,10 @@
 import {Component, Input} from '@angular/core';
-import { IColModel } from './models/IColModel';
-import { isFunction } from '../../utils/util';
 import { ColModel } from './data-table.component';
+import { isFunction } from '../../../store';
 
 @Component({
-    selector:'data-grid-cell',
-    template:`
+    selector: 'data-grid-cell',
+    template: `
         <div title="{{column.header}}" *ngIf="column.dataType !== 'html'">
            {{ displayText }}
         </div>

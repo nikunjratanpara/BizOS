@@ -1,6 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { TranslateService } from './controls/services/translate.service';
 import { BehaviorSubject } from 'rxjs';
+import { TranslateService } from './biz-os-shared';
 
 @Component({
   selector: 'app-root',
@@ -9,7 +9,6 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   title = 'app';
-  toggelMenu: BehaviorSubject<boolean> = new BehaviorSubject(false);
   constructor(private _translate: TranslateService) {}
   ngOnInit() {
     this.selectLang('en-EN');
@@ -20,6 +19,5 @@ export class AppComponent implements OnInit {
     this._translate.use(lang);
   }
   toggelSideNav() {
-    this.toggelMenu.next(!this.toggelMenu.getValue());
   }
 }

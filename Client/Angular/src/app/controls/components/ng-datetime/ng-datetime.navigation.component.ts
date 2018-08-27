@@ -1,9 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, ChangeDetectionStrategy, OnInit } from '@angular/core';
-import { CalendarService, NgbPeriod } from './calender.service';
-import { NgDatetime, NavigationEvent, IDatetimePickerOptions } from './datetime.struct';
-import { toInteger } from '../../utils/util';
-import { CalenderI18n } from '../../i18N/calenderi18n.model';
-import { TranslateService } from '../../services/translate.service';
+import { CalendarService } from './calender.service';
+import CalenderI18n from '../../../biz-os-shared/i18N/CalenderI18n';
+import { TranslateService, toInteger, NgDatetime, NavigationEvent, IDatetimePickerOptions } from '../../../biz-os-shared';
 
 @Component({
     selector: 'datepicker-navigation',

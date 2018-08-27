@@ -1,23 +1,14 @@
 import { Component, OnInit, Input, EventEmitter, Output, OnChanges, OnDestroy, ViewChild } from '@angular/core';
-import { IDataTableConfig, IDataRequestModel } from './models/dataTableConfig.model';
 import { BehaviorSubject, Subscription, Observable, of  } from 'rxjs';
-import { ICatalogFilterOptions } from '../../services/models/catalog.filter.interface';
-import { formatDate, extend, stringify } from '../../utils/util';
 import { IColModel } from './models/IColModel';
 import { IFormatter } from './models/IFormatter';
 import { IDateFormatOptions } from './models/IDateFormatOptions';
 import { INumberFormatOptions } from './models/INumberFormatOptions';
 import { IFormatOptions } from './models/IFormatOptions';
-import { HttpModule } from '@angular/http';
-import { DataTableService } from '../../services/data-table/data-table.service';
 import { switchMap } from 'rxjs/operators';
 import { ISourceConfiguration } from './models/ISourceConfiguration';
-import { validateConfig } from '@angular/router/src/config';
-
 import { DynamicFormComponent } from '../../containers/dynamic-form/dynamic-form.component';
-import { setRootDomAdapter } from '@angular/platform-browser/src/dom/dom_adapter';
-import { forEach } from '@angular/router/src/utils/collection';
-
+import { DataTableConfig, extend, DataTableService, DataRequestModel, formatDate } from '../../../biz-os-shared';
 @Component({
     selector: 'data-table',
     templateUrl: './data-table.component.html',
@@ -26,7 +17,7 @@ import { forEach } from '@angular/router/src/utils/collection';
 export class DataTableComponent implements OnInit, OnChanges, OnDestroy {
 
     @Input()
-    private config: IDataTableConfig;
+    private config: DataTableConfig;
     @Input()
     private filters: any;
     @Output()
@@ -37,7 +28,7 @@ export class DataTableComponent implements OnInit, OnChanges, OnDestroy {
     private activeIdx: number;
     private dataset: Array<any>;
     private queryData: BehaviorSubject<ISourceConfiguration> = new BehaviorSubject<ISourceConfiguration>(null);
-    private dataRequestModel: IDataRequestModel = { pageNo: 1, pageSize: 10, search: {}};
+    private dataRequestModel: DataRequestModel = { pageNo: 1, pageSize: 10, search: {}};
     private sourceSubscription: Subscription;
     constructor(private dataTableService: DataTableService ) {}
     ngOnInit() {

@@ -1,5 +1,9 @@
 {
   "extends": "../tsconfig.json",
+  "include": [
+    "./**/*",
+    "../../biz-os-shared/src/index.ts"
+  ],
   "compilerOptions": {
     "outDir": "../out-tsc/app",
     "baseUrl": "./",

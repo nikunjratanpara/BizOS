@@ -5,11 +5,11 @@ import {
 import { PopupService } from '../../services/popup.service';
 import { DatetimeWindowComponent } from './datetime.window.component';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { NgDatetime, IDatetimePickerOptions } from './datetime.struct';
+
 import { Observable, Subscription, fromEvent } from 'rxjs';
 import { Input, ComponentRef, forwardRef } from '@angular/core';
-import { Key } from '../../models/common.enums';
-import { toString, isValidDate, formatDate, createJSDateFromString } from '../../utils/util';
+
+import { Key, IDatetimePickerOptions, isValidDate, createJSDateFromString, toString, formatDate, NgDatetime } from '../../../biz-os-shared';
 
 const DATE_PICKER_VALUE_ACCESSOR = {
   provide: NG_VALUE_ACCESSOR,

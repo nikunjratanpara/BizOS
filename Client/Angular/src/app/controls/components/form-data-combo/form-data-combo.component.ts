@@ -1,13 +1,9 @@
 import { Component, OnInit, forwardRef, HostListener } from '@angular/core';
 import { BaseControlComponent } from '../base-control-component/base.control.component';
-import { ComboDisplayStyle } from '../../models/typeaheadOptions.interface';
-import { DataComboService } from '../../services/data-combo/data-combo.service';
 import { NG_VALUE_ACCESSOR, FormBuilder } from '@angular/forms';
 import { Observable, Subject, merge, of } from 'rxjs';
 import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
-import { ICatalogFilterOptions } from '../../services/models/catalog.filter.interface';
-import { Key } from '../../models/common.enums';
-import { ICatalogData } from '../../models/catalog.data.interface';
+import { CatalogData, CatalogFilterOption, DataComboService, ComboDisplayStyle, Key } from '../../../biz-os-shared';
 
 export const DATA_COMBO_CONTROL_VALUE_ACCESSOR: any = {
   provide: NG_VALUE_ACCESSOR,
@@ -23,10 +19,10 @@ export const DATA_COMBO_CONTROL_VALUE_ACCESSOR: any = {
 export class FormDataComboComponent extends BaseControlComponent implements OnInit {
 
   options: any;
-  format: (comboItem: ICatalogData) => string;
-  value: ICatalogData;
-  optionProvider: Observable<ICatalogFilterOptions>;
-  allOptionProvider: Subject<ICatalogFilterOptions> = new Subject<ICatalogFilterOptions>();
+  format: (comboItem: CatalogData) => string;
+  value: CatalogData;
+  optionProvider: Observable<CatalogFilterOption>;
+  allOptionProvider: Subject<CatalogFilterOption> = new Subject<CatalogFilterOption>();
   constructor(private dataComboService: DataComboService, fb: FormBuilder) {
     super(fb);
   }
@@ -46,12 +42,12 @@ export class FormDataComboComponent extends BaseControlComponent implements OnIn
     };
     this.format = this.formatter(this.typeaheadOptions.displayStyle);
   }
-  public search = (query: Observable<ICatalogFilterOptions>): Observable<ICatalogData[]> => {
+  public search = (query: Observable<CatalogFilterOption>): Observable<CatalogData[]> => {
     this.optionProvider = query;
      return merge(this.optionProvider, this.allOptionProvider.asObservable()).pipe(
      debounceTime(300),
      distinctUntilChanged(),
-     switchMap((option: ICatalogFilterOptions) => {
+     switchMap((option: CatalogFilterOption) => {
       return this.getOptions(option);
     }));
   }
@@ -60,7 +56,7 @@ public showAllOptions() {
     this.allOptionProvider.next({term: '', showAll: true});
   }
 }
-private getOptions(option: ICatalogFilterOptions) {
+private getOptions(option: CatalogFilterOption) {
   if (option) {
     if (typeof(option) === 'string') {
       option = {term: option, showAll: false};
@@ -70,15 +66,15 @@ private getOptions(option: ICatalogFilterOptions) {
     return of([]);
   }
 }
-  private formatter(comboDisplayStyle: ComboDisplayStyle): (comboItem: ICatalogData) => string {
-    const formatfun: Array<(comboItem: ICatalogData) => string> = [];
-    formatfun[ComboDisplayStyle.code] = (comboItem: ICatalogData): string => {
+  private formatter(comboDisplayStyle: ComboDisplayStyle): (comboItem: CatalogData) => string {
+    const formatfun: Array<(comboItem: CatalogData) => string> = [];
+    formatfun[ComboDisplayStyle.code] = (comboItem: CatalogData): string => {
       return comboItem.code;
     };
-    formatfun[ComboDisplayStyle.description] = (comboItem: ICatalogData): string => {
+    formatfun[ComboDisplayStyle.description] = (comboItem: CatalogData): string => {
       return comboItem.description;
     };
-    formatfun[ComboDisplayStyle.codeDesciption] = (comboItem: ICatalogData): string => {
+    formatfun[ComboDisplayStyle.codeDesciption] = (comboItem: CatalogData): string => {
       return comboItem.code + ' - ' + comboItem.description;
     };
     return formatfun[comboDisplayStyle];

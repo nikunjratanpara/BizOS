@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>E:\BizOS\Server\Deployment\Other dlls</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\BL\BizOS.Base.BL\BizOS.Base.BL.csproj" />
+    <ProjectReference Include="..\..\Common\Utils\BizOS.Common\BizOS.Common.csproj" />
+    <ProjectReference Include="..\..\Contracts\BizOS.Base.Contracts\BizOS.Base.Contracts.csproj" />
+    <ProjectReference Include="..\..\Contracts\BizOS.Common.Contracts\BizOS.Common.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="Microsoft.Extensions.Caching.Abstractions">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\microsoft.extensions.caching.abstractions\2.1.1\lib\netstandard2.0\Microsoft.Extensions.Caching.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Composition.AttributedModel">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\system.composition.attributedmodel\1.0.31\lib\netstandard1.0\System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="E:\BizOS\Server\Deployment\build.bat" />
+  </Target>
+
+</Project>

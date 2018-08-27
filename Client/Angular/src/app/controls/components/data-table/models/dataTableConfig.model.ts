@@ -1,11 +1,11 @@
 import { IColModel } from './IColModel';
 import { ISourceConfiguration } from './ISourceConfiguration';
-import { IFormConfig } from '../../../models/field.config.interface';
+import { FormConfig } from '../../../../biz-os-shared';
 export interface IDataTableConfig {
     cols: Array<IColModel>;
     source: ISourceConfiguration;
     pageSize: number;
-    searchConfig?: IFormConfig;
+    searchConfig?: FormConfig;
 }
 export interface IColumnConfig {
     header: string;

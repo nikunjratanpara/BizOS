@@ -1,17 +1,9 @@
 import { Component, OnInit, OnChanges, Input, Output, EventEmitter } from '@angular/core';
-import {
-  IFieldConfig, minDate, IFieldValidator, maxNumber, minNumber, maxDate,
-  IFormConfig, IFormModel, FormMode
-} from '../../models/field.config.interface';
 import { FormGroup, FormBuilder } from '@angular/forms';
-import { DatepickerNavigationComponent } from '../../components/ng-datetime/ng-datetime.navigation.component';
-import { NgDatetime } from '../../components/ng-datetime/datetime.struct';
-
-import { CalendarService } from '../../components/ng-datetime/calender.service';
-import { isValidDate, ISODateFormat, isInteger, isNumber, isFunction, isDefined } from '../../utils/util';
-import { TranslateService } from '../../services/translate.service';
 import { Event } from '@angular/router/src/events';
-import { required, ICustomValidations } from '../../models/field.config.interface';
+import { FormConfig, TranslateService, FieldConfig, required, minDate, maxDate, FieldValidator,
+          minNumber, maxNumber, CustomValidations, FormModel, FormMode,
+          isValidDate, ISODateFormat, isNumber, isInteger, isDefined, NgDatetime } from '../../../biz-os-shared';
 
 @Component({
   exportAs: 'dynamicForm',
@@ -21,7 +13,7 @@ import { required, ICustomValidations } from '../../models/field.config.interfac
 })
 export class DynamicFormComponent implements OnInit, OnChanges {
   @Input()
-  config: IFormConfig;
+  config: FormConfig;
 
   @Output()
   onSave: EventEmitter<any> = new EventEmitter<any>();
@@ -39,7 +31,7 @@ export class DynamicFormComponent implements OnInit, OnChanges {
   onSearch: EventEmitter<any> = new EventEmitter<any>();
 
   form: FormGroup;
-  formModel: IFormModel;
+  formModel: FormModel;
   dateFormat = 'dd/MM/yyyy';
   get controls() { return this.config && this.config.controls ? this.config.controls.filter(({ type }) => type !== 'button') : []; }
   get changes() { return this.form.valueChanges; }
@@ -122,9 +114,9 @@ export class DynamicFormComponent implements OnInit, OnChanges {
     return group;
   }
 
-  createControl(config: IFieldConfig) {
-    const { disabled, validation, value } = config;
-    return this.fb.control({ disabled, value }, validation);
+  createControl(config: FieldConfig) {
+    const { disabled,  value } = config;
+    return this.fb.control({ disabled, value });
   }
 
   handleSubmit(event: Event) {
@@ -239,7 +231,7 @@ export class DynamicFormComponent implements OnInit, OnChanges {
         control.errors = [];
         const dateControl = this.form.get(control.name);
         const date: NgDatetime = NgDatetime.fromJSDate(dateControl.value);
-        const customValidation: IFieldValidator = this.getCustomValidation(control.customValidation, minDate);
+        const customValidation: FieldValidator = this.getCustomValidation(control.customValidation, minDate);
         let dateValidateWith: NgDatetime = null;
         if (isValidDate(customValidation.validateWith as string, ISODateFormat)) {
           dateValidateWith = NgDatetime.fromJSDate(new Date(customValidation.validateWith as string));
@@ -272,7 +264,7 @@ export class DynamicFormComponent implements OnInit, OnChanges {
         let isValidControl = false;
         const dateControl = this.form.get(control.name);
         const date: NgDatetime = NgDatetime.fromJSDate(dateControl.value);
-        const customValidation: IFieldValidator = this.getCustomValidation(control.customValidation, maxDate);
+        const customValidation: FieldValidator = this.getCustomValidation(control.customValidation, maxDate);
         let dateValidateWith: NgDatetime = null;
         if (isValidDate(customValidation.validateWith as string, ISODateFormat)) {
           dateValidateWith = NgDatetime.fromJSDate(new Date(customValidation.validateWith as string));
@@ -305,7 +297,7 @@ export class DynamicFormComponent implements OnInit, OnChanges {
         let isValidControl = false;
         const numberControl = this.form.get(control.name);
         const controlValue: number = numberControl.value;
-        const customValidation: IFieldValidator = this.getCustomValidation(control.customValidation, minNumber);
+        const customValidation: FieldValidator = this.getCustomValidation(control.customValidation, minNumber);
         let numberValidateWith: number = null;
         if (isNumber(customValidation.validateWith)) {
           numberValidateWith = Number(customValidation.validateWith);
@@ -338,7 +330,7 @@ export class DynamicFormComponent implements OnInit, OnChanges {
         let isValidControl = false;
         const numberControl = this.form.get(control.name);
         const controlValue: number = numberControl.value;
-        const customValidation: IFieldValidator = this.getCustomValidation(control.customValidation, maxNumber);
+        const customValidation: FieldValidator = this.getCustomValidation(control.customValidation, maxNumber);
         let numberValidateWith: number = null;
         if (isInteger(customValidation.validateWith)) {
           numberValidateWith = Number(customValidation.validateWith);
@@ -367,10 +359,10 @@ export class DynamicFormComponent implements OnInit, OnChanges {
       return !control.disabled && this.isValidationRequired(control.customValidation, validationType);
     });
   }
-  private isValidationRequired(customValidation: ICustomValidations, validationType: string): boolean {
+  private isValidationRequired(customValidation: CustomValidations, validationType: string): boolean {
     return !!this.getCustomValidation(customValidation, validationType);
   }
-  private getCustomValidation(customValidation: ICustomValidations, validationType: string): IFieldValidator {
+  private getCustomValidation(customValidation: CustomValidations, validationType: string): FieldValidator {
     let validation = null;
     if (customValidation && customValidation[validationType]) {
       validation = {};

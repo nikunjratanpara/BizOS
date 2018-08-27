@@ -1,8 +1,9 @@
 import { Component, OnInit, Input, OnDestroy, OnChanges, EventEmitter, Output } from '@angular/core';
-import { IDataGridSettings, IDataSource, IDataGridColumn, IGridOutcome } from '../models/data-grid.models';
-import { DataTableService } from '../../controls/services/data-table/data-table.service';
+import { IDataGridSettings, IDataSource, IDataGridColumn } from '../models/data-grid.models';
 import { BehaviorSubject, Subscription, Observable} from 'rxjs';
 import { switchMap } from 'rxjs/operators';
+import { DataSource, GridOutcome, DataTableService } from '../../biz-os-shared';
+
 
 @Component({
     selector: 'app-ng-data-table',
@@ -81,7 +82,7 @@ export class NgDataTableComponent implements OnInit, OnChanges, OnDestroy {
         this.pageNo = event.pageNo;
         this.queryData.next(this.options.source);
     }
-    private reload(sourceConfiguration: IDataSource): Observable<IGridOutcome> {
+    private reload(sourceConfiguration: DataSource): Observable<GridOutcome> {
         return this.dataTableService.getSourceObservable(sourceConfiguration);
     }
 

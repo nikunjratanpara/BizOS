@@ -2,14 +2,9 @@ import { Component, OnInit, AfterViewInit, ViewChild } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { DynamicFormComponent } from '../../../controls/containers/dynamic-form/dynamic-form.component';
-import { IFormConfig } from '../../../controls/models/field.config.interface';
-import { DynamicFormService } from '../../../controls/services/dynamic-form/dynamic-form.service';
-import { DynamicViewService } from '../../../controls/services/dynamic-view/dynamic-view.service';
-import { DataTableService } from '../../../controls/services/data-table/data-table.service';
-import { DynamicViewConfig } from '../../../controls/models/dynamic.view.config';
 import { IDataGridSettings } from '../../../datatable/models/data-grid.models';
 import { NgDataTableComponent } from '../../../datatable/ng-data-table/ng-data-table.component';
-
+import { DynamicFormService, FormConfig, DynamicViewService, DynamicViewConfig } from '../../../biz-os-shared';
 @Component({
   selector: 'app-catalog-form',
   templateUrl: './catalog-form.component.html',
@@ -19,13 +14,12 @@ export class CatalogFormComponent implements AfterViewInit, OnInit {
 
   @ViewChild(DynamicFormComponent) form: DynamicFormComponent;
   @ViewChild(NgDataTableComponent) grid: NgDataTableComponent;
-  config: IFormConfig;
+  config: FormConfig;
   dataTableConfig: IDataGridSettings;
   formName: string;
   constructor(private route: ActivatedRoute,
     private dynamicFormService: DynamicFormService,
-    private dynamicViewService: DynamicViewService,
-    private dataTableService: DataTableService) { }
+    private dynamicViewService: DynamicViewService) { }
   ngAfterViewInit() {
     /* let previousValid = this.form.valid;
      this.form.changes.subscribe(() => {

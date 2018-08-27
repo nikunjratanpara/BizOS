@@ -13,6 +13,7 @@ Drop Table [CatState]
 Drop Table [CatCountry]
 DROP Table [CatCatalogs]
 
+-- generic catalogs
 Create Table CatCatalogs(
     CatalogId VARCHAR(20),
 	DisplayColumn VARCHAR(50),
@@ -68,13 +69,13 @@ Create Table CatCatalogs(
 ) Create Table Ledger (
     Id int identity Constraint PK_Ledger Primary Key,
     [Name] NVarchar(500),
+	CurrencyId Varchar(10),
     LedgerGroup int Constraint FK_Ledger_LedgerGroup Foreign Key References LedgerGroup(Id),
     Deleted BIT Constraint DF_Ledger_Deleted Default 0
 ) Create Table Customer (
     LedgerId int Constraint PK_Customer Primary Key Constraint FK_Customer_Ledger References Ledger(Id),
     BirthDate DATETIME,
-    FirstName NVARCHAR(250),
-    LastName NVARCHAR(250),
+    [Name] NVARCHAR(250),
     Email NVARCHAR(250),
     Mobile varchar(10),
     Office varchar(10),
@@ -84,8 +85,7 @@ Create Table CatCatalogs(
 Create Table Supplier (
     LedgerId int Constraint PK_Supplier Primary Key Constraint FK_Supplier_Ledger References Ledger(Id),
     BirthDate DATETIME,
-    FirstName NVARCHAR(250),
-    LastName NVARCHAR(250),
+    [Name] NVARCHAR(250),    
     Email NVARCHAR(250),
     Mobile varchar(10),
     Office varchar(10),
@@ -110,8 +110,6 @@ Create Table ExtraAttribute (
     AttrName nVarchar(100),
     AttrVal NVarchar(100)
 )
-
-
 Insert into CatCatalogs (CatalogId,DisplayColumn,ValueColumn) VALUES
 ('AccountHead','Assets','A'),
 ('AccountHead','Liabilities','L'),

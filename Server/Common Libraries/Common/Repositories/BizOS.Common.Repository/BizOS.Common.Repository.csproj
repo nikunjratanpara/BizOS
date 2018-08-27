@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>E:\BizOS\Server\Deployment\Other dlls</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Contracts\BizOS.Common.Contracts\BizOS.Common.Contracts.csproj" />
+    <ProjectReference Include="..\..\BL\BizOS.Base.BL\BizOS.Base.BL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Composition.AttributedModel">
+      <HintPath>C:\Program Files\dotnet\sdk\NuGetFallbackFolder\system.composition.attributedmodel\1.0.31\lib\netstandard1.0\System.Composition.AttributedModel.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="E:\BizOS\Server\Deployment\build.bat" />
+  </Target>
+
+</Project>

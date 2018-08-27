@@ -1,11 +1,8 @@
-import { IField } from '../../models/field.interface';
-import { IFieldConfig, IError, IFieldValidator, IFormModel, FormMode, ICustomValidations } from '../../models/field.config.interface';
+
 import { FormGroup, ValidatorFn, AbstractControl, FormBuilder } from '@angular/forms';
 import { OnInit, Input } from '@angular/core';
-import { IOption } from '../../models/option.interface';
-import { ITypeaheadOptions } from '../../models/typeaheadOptions.interface';
-import { IDatetimePickerOptions } from '../ng-datetime/datetime.struct';
-export class BaseControlComponent implements OnInit, IField {
+import { Option, CustomValidations, FormModel, Error, IDatetimePickerOptions, TypeaheadOptions } from '../../../biz-os-shared';
+export class BaseControlComponent implements OnInit {
 
   labelWidth: string;
   controlWidth: string;
@@ -22,25 +19,25 @@ export class BaseControlComponent implements OnInit, IField {
   @Input()
   label?: string;
   @Input()
-  options?: IOption[] | string[] ;
+  options?: Option[] | string[] ;
   @Input()
   placeholder?: string;
   @Input()
-  errors?: IError[];
+  errors?: Error[];
   @Input()
   validation?: ValidatorFn[];
   @Input()
-  customValidation?: ICustomValidations;
+  customValidation?: CustomValidations;
   @Input()
   value?: any;
   @Input()
   cssClass?: string;
   @Input()
-  typeaheadOptions?: ITypeaheadOptions;
+  typeaheadOptions?: TypeaheadOptions;
   @Input()
   datetimePickerOptions?: IDatetimePickerOptions;
   @Input()
-  formModel: IFormModel;
+  formModel: FormModel;
   @Input()
   containerCss: string;
 
@@ -62,7 +59,7 @@ export class BaseControlComponent implements OnInit, IField {
   handleOptions(): void {
     if (this.options && this.options.length > 0 && typeof(this.options[0]) === 'string' ) {
       this.options = (this.options as string[]).map((option: string) => {
-        return  {label: option, value: option} as IOption;
+        return  {label: option, value: option} as Option;
      });
     }
   }

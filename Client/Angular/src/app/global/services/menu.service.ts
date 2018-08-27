@@ -1,9 +1,9 @@
 import { MenuConfig } from '../models/menu.model';
 import { Observable } from 'rxjs';
-import { BaseService } from '../../controls/services/base.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError } from 'rxjs/operators';
+import { BaseService } from '../../biz-os-shared';
 export interface IMenuService {
     getMenues(moduleId: string): Observable<MenuConfig[]>;
 }
