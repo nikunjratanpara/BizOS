@@ -1,10 +1,10 @@
-﻿using Unity;
+﻿using Microsoft.Extensions.DependencyInjection;
 
 namespace BizOS.Base.Contracts.Configuration
 {
     public interface IComponentConfiguration
     {
-        void RegisterServices(IUnityContainer container);
+        void RegisterServices(IServiceCollection container);
         void Bind();
     }
 }

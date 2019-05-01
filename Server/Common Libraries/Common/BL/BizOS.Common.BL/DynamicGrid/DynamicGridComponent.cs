@@ -1,8 +1,8 @@
 ﻿using BizOS.Common.Contracts.DynamicGrid;
 using BizOS.Base.BL;
 using BizOS.Common.Contracts.DynamicGrid.Models;
-using System.Collections.Generic;
-using Unity;
+using System;
+using System.Threading.Tasks;
 
 namespace BizOS.Common.BL.DynamicGrid
 {
@@ -10,7 +10,7 @@ namespace BizOS.Common.BL.DynamicGrid
     {
         private IDynamicGridRepository dynamicGridRepository;
 
-        public DynamicGridComponent(IUnityContainer container) : base(container)
+        public DynamicGridComponent(IServiceProvider provider): base(provider)
         {
         }
 
@@ -25,9 +25,9 @@ namespace BizOS.Common.BL.DynamicGrid
                 dynamicGridRepository = value;
             }
         }
-        public GridOutcome GetData(string GridConfigId, GridDataRequest gridDataRequest)
+        public async Task<GridOutcome> GetDataAsync(string GridConfigId, GridDataRequest gridDataRequest)
         {
-            return DynamicGridRepository.GetData(GridConfigId, gridDataRequest);
+            return await DynamicGridRepository.GetDataAsync(GridConfigId, gridDataRequest);
         }
 
         public GridConfiguration GetGridConfig(string GridConfigId)

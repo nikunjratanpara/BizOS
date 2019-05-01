@@ -8,7 +8,7 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./form-checkbox.component.scss']
 })
 export class FormCheckboxComponent extends BaseControlComponent implements OnInit {
-
+  checked: boolean;
   constructor(fb: FormBuilder) {
     super(fb);
   }
@@ -16,6 +16,7 @@ export class FormCheckboxComponent extends BaseControlComponent implements OnIni
   ngOnInit() {
     this.cssClass = this.cssClass || '  ';
     this.defaultConfig();
+    this.checked = true;
   }
 
 }

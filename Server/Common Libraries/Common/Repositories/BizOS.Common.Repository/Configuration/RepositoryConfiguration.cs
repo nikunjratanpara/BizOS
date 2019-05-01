@@ -9,7 +9,7 @@ using BizOS.Common.Repository.Module;
 using BizOS.Base.Contracts.Configuration;
 using System.Composition;
 using Microsoft.Extensions.DependencyInjection;
-using Unity;
+
 
 namespace BizOS.Common.Repository.Configuration
 {
@@ -20,12 +20,12 @@ namespace BizOS.Common.Repository.Configuration
         {
         }
 
-        public void RegisterServices(IUnityContainer container)
+        public void RegisterServices(IServiceCollection container)
         {
-            container.RegisterType<IDynamicFormRepository, DynamicFormRepository>();
-            container.RegisterType<IDynamicGridRepository, DynamicGridRepository>();
-            container.RegisterType<ICatalogRepository, CatalogRepository>();
-            container.RegisterType<IModuleRepository,ModuleRepository>();
+            container.AddScoped<IDynamicFormRepository, DynamicFormRepository>();
+            container.AddScoped<IDynamicGridRepository, DynamicGridRepository>();
+            container.AddScoped<ICatalogRepository, CatalogRepository>();
+            container.AddScoped<IModuleRepository,ModuleRepository>();
         }
     }
 }

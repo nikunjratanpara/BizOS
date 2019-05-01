@@ -1,0 +1,1203 @@
+{
+  "city": [
+    {
+      "country": "IN",
+      "name": "Thang",
+      "lat": "34.9274",
+      "lng": "76.79336"
+    },
+    {
+      "country": "IN",
+      "name": "Pūnch",
+      "lat": "33.77033",
+      "lng": "74.09254"
+    },
+    {
+      "country": "IN",
+      "name": "Keelakarai",
+      "lat": "9.23183",
+      "lng": "78.78545"
+    },
+    {
+      "country": "IN",
+      "name": "Zunheboto",
+      "lat": "25.96667",
+      "lng": "94.51667"
+    },
+    {
+      "country": "IN",
+      "name": "Ziro",
+      "lat": "27.59497",
+      "lng": "93.83854"
+    },
+    {
+      "country": "IN",
+      "name": "Zamānia",
+      "lat": "25.41961",
+      "lng": "83.55786"
+    },
+    {
+      "country": "IN",
+      "name": "Zaidpur",
+      "lat": "26.83093",
+      "lng": "81.32929"
+    },
+    {
+      "country": "IN",
+      "name": "Zahirābād",
+      "lat": "17.68138",
+      "lng": "77.60743"
+    },
+    {
+      "country": "IN",
+      "name": "Zafarābād",
+      "lat": "25.69867",
+      "lng": "82.73354"
+    },
+    {
+      "country": "IN",
+      "name": "Yol",
+      "lat": "32.16423",
+      "lng": "76.19622"
+    },
+    {
+      "country": "IN",
+      "name": "Yeola",
+      "lat": "20.0424",
+      "lng": "74.48944"
+    },
+    {
+      "country": "IN",
+      "name": "Yellāpur",
+      "lat": "14.9637",
+      "lng": "74.70929"
+    },
+    {
+      "country": "IN",
+      "name": "Yellandu",
+      "lat": "17.59064",
+      "lng": "80.32146"
+    },
+    {
+      "country": "IN",
+      "name": "Yelbarga",
+      "lat": "15.61545",
+      "lng": "76.01184"
+    },
+    {
+      "country": "IN",
+      "name": "Yelandūr",
+      "lat": "12.04629",
+      "lng": "77.03034"
+    },
+    {
+      "country": "IN",
+      "name": "Yelahanka",
+      "lat": "13.10073",
+      "lng": "77.59632"
+    },
+    {
+      "country": "IN",
+      "name": "Yavatmāl",
+      "lat": "20.39324",
+      "lng": "78.13201"
+    },
+    {
+      "country": "IN",
+      "name": "Yāval",
+      "lat": "21.16772",
+      "lng": "75.69762"
+    },
+    {
+      "country": "IN",
+      "name": "Yārāda",
+      "lat": "17.65872",
+      "lng": "83.27419"
+    },
+    {
+      "country": "IN",
+      "name": "Yanam",
+      "lat": "16.73308",
+      "lng": "82.21364"
+    },
+    {
+      "country": "IN",
+      "name": "Yamunānagar",
+      "lat": "30.12796",
+      "lng": "77.28371"
+    },
+    {
+      "country": "IN",
+      "name": "Yairipok",
+      "lat": "24.67792",
+      "lng": "94.04767"
+    },
+    {
+      "country": "IN",
+      "name": "Yādgīr",
+      "lat": "16.77007",
+      "lng": "77.13755"
+    },
+    {
+      "country": "IN",
+      "name": "Wokha",
+      "lat": "26.09717",
+      "lng": "94.25817"
+    },
+    {
+      "country": "IN",
+      "name": "Wer",
+      "lat": "27.0186",
+      "lng": "77.17636"
+    },
+    {
+      "country": "IN",
+      "name": "Wellington",
+      "lat": "11.36552",
+      "lng": "76.78442"
+    },
+    {
+      "country": "IN",
+      "name": "Wazīrganj",
+      "lat": "28.21145",
+      "lng": "79.05665"
+    },
+    {
+      "country": "IN",
+      "name": "Wāshīm",
+      "lat": "20.11128",
+      "lng": "77.133"
+    },
+    {
+      "country": "IN",
+      "name": "Warud",
+      "lat": "21.47101",
+      "lng": "78.26965"
+    },
+    {
+      "country": "IN",
+      "name": "Warora",
+      "lat": "20.22885",
+      "lng": "79.00277"
+    },
+    {
+      "country": "IN",
+      "name": "Wāris Alīganj",
+      "lat": "25.0172",
+      "lng": "85.64047"
+    },
+    {
+      "country": "IN",
+      "name": "Wardha",
+      "lat": "20.73933",
+      "lng": "78.59784"
+    },
+    {
+      "country": "IN",
+      "name": "Wārāseonī",
+      "lat": "21.76184",
+      "lng": "80.04301"
+    },
+    {
+      "country": "IN",
+      "name": "Warangal",
+      "lat": "18",
+      "lng": "79.58333"
+    },
+    {
+      "country": "IN",
+      "name": "Wanparti",
+      "lat": "16.36738",
+      "lng": "78.06889"
+    },
+    {
+      "country": "IN",
+      "name": "Wānkāner",
+      "lat": "22.61198",
+      "lng": "70.94379"
+    },
+    {
+      "country": "IN",
+      "name": "Wani",
+      "lat": "20.05507",
+      "lng": "78.95313"
+    },
+    {
+      "country": "IN",
+      "name": "Wāngjing",
+      "lat": "24.58921",
+      "lng": "94.06386"
+    },
+    {
+      "country": "IN",
+      "name": "Walajapet",
+      "lat": "12.9251",
+      "lng": "79.36626"
+    },
+    {
+      "country": "IN",
+      "name": "Wallajahbad",
+      "lat": "12.79041",
+      "lng": "79.82358"
+    },
+    {
+      "country": "IN",
+      "name": "Wai",
+      "lat": "17.95276",
+      "lng": "73.89058"
+    },
+    {
+      "country": "IN",
+      "name": "Waghāi",
+      "lat": "20.77048",
+      "lng": "73.50074"
+    },
+    {
+      "country": "IN",
+      "name": "Wādi",
+      "lat": "17.05183",
+      "lng": "76.99048"
+    },
+    {
+      "country": "IN",
+      "name": "Wadgaon",
+      "lat": "18.7392",
+      "lng": "73.63945"
+    },
+    {
+      "country": "IN",
+      "name": "Vyāra",
+      "lat": "21.11079",
+      "lng": "73.39365"
+    },
+    {
+      "country": "IN",
+      "name": "Vuyyūru",
+      "lat": "16.36307",
+      "lng": "80.84406"
+    },
+    {
+      "country": "IN",
+      "name": "Vrindāvan",
+      "lat": "27.58105",
+      "lng": "77.69662"
+    },
+    {
+      "country": "IN",
+      "name": "Vriddhāchalam",
+      "lat": "11.5183",
+      "lng": "79.32411"
+    },
+    {
+      "country": "IN",
+      "name": "Vizianagaram",
+      "lat": "18.11692",
+      "lng": "83.41148"
+    },
+    {
+      "country": "IN",
+      "name": "Vite",
+      "lat": "17.27343",
+      "lng": "74.53792"
+    },
+    {
+      "country": "IN",
+      "name": "Visnagar",
+      "lat": "23.69855",
+      "lng": "72.5521"
+    },
+    {
+      "country": "IN",
+      "name": "Visakhapatnam",
+      "lat": "17.68009",
+      "lng": "83.20161"
+    },
+    {
+      "country": "IN",
+      "name": "Vīsāvadar",
+      "lat": "21.33954",
+      "lng": "70.74966"
+    },
+    {
+      "country": "IN",
+      "name": "Virudunagar",
+      "lat": "9.58509",
+      "lng": "77.95787"
+    },
+    {
+      "country": "IN",
+      "name": "Virpur",
+      "lat": "23.1892",
+      "lng": "73.47987"
+    },
+    {
+      "country": "IN",
+      "name": "Vadakku Viravanallur",
+      "lat": "8.69786",
+      "lng": "77.51916"
+    },
+    {
+      "country": "IN",
+      "name": "Vīrarājendrapet",
+      "lat": "12.19644",
+      "lng": "75.80512"
+    },
+    {
+      "country": "IN",
+      "name": "Virār",
+      "lat": "19.45591",
+      "lng": "72.81136"
+    },
+    {
+      "country": "IN",
+      "name": "Vīraganūr",
+      "lat": "11.47613",
+      "lng": "78.73553"
+    },
+    {
+      "country": "IN",
+      "name": "Vinukonda",
+      "lat": "16.0531",
+      "lng": "79.73964"
+    },
+    {
+      "country": "IN",
+      "name": "Vinchia",
+      "lat": "22.21027",
+      "lng": "71.37967"
+    },
+    {
+      "country": "IN",
+      "name": "Villupuram",
+      "lat": "11.93975",
+      "lng": "79.49244"
+    },
+    {
+      "country": "IN",
+      "name": "Vilattikulam",
+      "lat": "9.13227",
+      "lng": "78.16635"
+    },
+    {
+      "country": "IN",
+      "name": "Vikravāndi",
+      "lat": "12.0369",
+      "lng": "79.54595"
+    },
+    {
+      "country": "IN",
+      "name": "Vikārābād",
+      "lat": "17.3381",
+      "lng": "77.90441"
+    },
+    {
+      "country": "IN",
+      "name": "Vijayawada",
+      "lat": "16.50745",
+      "lng": "80.6466"
+    },
+    {
+      "country": "IN",
+      "name": "Vijayapuri",
+      "lat": "11.2453",
+      "lng": "77.50066"
+    },
+    {
+      "country": "IN",
+      "name": "Vijāpur",
+      "lat": "23.5623",
+      "lng": "72.74848"
+    },
+    {
+      "country": "IN",
+      "name": "Vidisha",
+      "lat": "23.52604",
+      "lng": "77.81092"
+    },
+    {
+      "country": "IN",
+      "name": "Vettūr",
+      "lat": "8.71742",
+      "lng": "76.72582"
+    },
+    {
+      "country": "IN",
+      "name": "Vettavalam",
+      "lat": "12.10769",
+      "lng": "79.24516"
+    },
+    {
+      "country": "IN",
+      "name": "Vettaikkaranpudur",
+      "lat": "10.56207",
+      "lng": "76.91305"
+    },
+    {
+      "country": "IN",
+      "name": "Vetapālem",
+      "lat": "15.78502",
+      "lng": "80.30663"
+    },
+    {
+      "country": "IN",
+      "name": "Verāval",
+      "lat": "20.9077",
+      "lng": "70.36786"
+    },
+    {
+      "country": "IN",
+      "name": "Vepagunta",
+      "lat": "17.77844",
+      "lng": "83.21577"
+    },
+    {
+      "country": "IN",
+      "name": "Venkatagiri",
+      "lat": "13.96005",
+      "lng": "79.58032"
+    },
+    {
+      "country": "IN",
+      "name": "Vengurla",
+      "lat": "15.86125",
+      "lng": "73.63182"
+    },
+    {
+      "country": "IN",
+      "name": "Vemalwāda",
+      "lat": "18.46523",
+      "lng": "78.86894"
+    },
+    {
+      "country": "IN",
+      "name": "Velur",
+      "lat": "11.10825",
+      "lng": "78.00113"
+    },
+    {
+      "country": "IN",
+      "name": "Vellore",
+      "lat": "12.9184",
+      "lng": "79.13255"
+    },
+    {
+      "country": "IN",
+      "name": "Velankanni",
+      "lat": "10.68333",
+      "lng": "79.83333"
+    },
+    {
+      "country": "IN",
+      "name": "Vejalpur",
+      "lat": "22.69021",
+      "lng": "73.56299"
+    },
+    {
+      "country": "IN",
+      "name": "Vedasandūr",
+      "lat": "10.53102",
+      "lng": "77.95019"
+    },
+    {
+      "country": "IN",
+      "name": "Vedaraniyam",
+      "lat": "10.37208",
+      "lng": "79.85095"
+    },
+    {
+      "country": "IN",
+      "name": "Vayalār",
+      "lat": "9.71158",
+      "lng": "76.33888"
+    },
+    {
+      "country": "IN",
+      "name": "Vattalkundu",
+      "lat": "10.16069",
+      "lng": "77.75883"
+    },
+    {
+      "country": "IN",
+      "name": "Vāsudevanallūr",
+      "lat": "9.24171",
+      "lng": "77.41177"
+    },
+    {
+      "country": "IN",
+      "name": "Vasind",
+      "lat": "19.40844",
+      "lng": "73.26285"
+    },
+    {
+      "country": "IN",
+      "name": "Vasco da Gama",
+      "lat": "15.39585",
+      "lng": "73.81568"
+    },
+    {
+      "country": "IN",
+      "name": "Vasa",
+      "lat": "22.66079",
+      "lng": "72.75519"
+    },
+    {
+      "country": "IN",
+      "name": "Vartej",
+      "lat": "21.73947",
+      "lng": "72.06553"
+    },
+    {
+      "country": "IN",
+      "name": "Varkala",
+      "lat": "8.7333",
+      "lng": "76.7167"
+    },
+    {
+      "country": "IN",
+      "name": "Varca",
+      "lat": "15.23237",
+      "lng": "73.94311"
+    },
+    {
+      "country": "IN",
+      "name": "Varangaon",
+      "lat": "21.01767",
+      "lng": "75.91042"
+    },
+    {
+      "country": "IN",
+      "name": "Varanasi",
+      "lat": "25.31668",
+      "lng": "83.01041"
+    },
+    {
+      "country": "IN",
+      "name": "Vānsada",
+      "lat": "20.75817",
+      "lng": "73.36389"
+    },
+    {
+      "country": "IN",
+      "name": "Vaniyambadi",
+      "lat": "12.68162",
+      "lng": "78.62014"
+    },
+    {
+      "country": "IN",
+      "name": "Vandavāsi",
+      "lat": "12.50429",
+      "lng": "79.60556"
+    },
+    {
+      "country": "IN",
+      "name": "Vandalūr",
+      "lat": "12.8924",
+      "lng": "80.08079"
+    },
+    {
+      "country": "IN",
+      "name": "Valsād",
+      "lat": "20.61013",
+      "lng": "72.93428"
+    },
+    {
+      "country": "IN",
+      "name": "Valpoy",
+      "lat": "15.53239",
+      "lng": "74.13671"
+    },
+    {
+      "country": "IN",
+      "name": "Valparai",
+      "lat": "10.32691",
+      "lng": "76.95116"
+    },
+    {
+      "country": "IN",
+      "name": "Vallam",
+      "lat": "10.71988",
+      "lng": "79.05981"
+    },
+    {
+      "country": "IN",
+      "name": "Vallabh Vidyanagar",
+      "lat": "22.53333",
+      "lng": "72.9"
+    },
+    {
+      "country": "IN",
+      "name": "Valavanur",
+      "lat": "11.92094",
+      "lng": "79.58239"
+    },
+    {
+      "country": "IN",
+      "name": "Azhikkal",
+      "lat": "11.91524",
+      "lng": "75.34761"
+    },
+    {
+      "country": "IN",
+      "name": "Valangaiman",
+      "lat": "10.89012",
+      "lng": "79.39322"
+    },
+    {
+      "country": "IN",
+      "name": "Valabhīpur",
+      "lat": "21.88868",
+      "lng": "71.87935"
+    },
+    {
+      "country": "IN",
+      "name": "Vaikam",
+      "lat": "9.74858",
+      "lng": "76.39637"
+    },
+    {
+      "country": "IN",
+      "name": "Vaijāpur",
+      "lat": "19.92672",
+      "lng": "74.7275"
+    },
+    {
+      "country": "IN",
+      "name": "Vāghodia",
+      "lat": "22.30505",
+      "lng": "73.40016"
+    },
+    {
+      "country": "IN",
+      "name": "Vadodara",
+      "lat": "22.29941",
+      "lng": "73.20812"
+    },
+    {
+      "country": "IN",
+      "name": "Vadnagar",
+      "lat": "23.78593",
+      "lng": "72.63893"
+    },
+    {
+      "country": "IN",
+      "name": "Vadlapūdi",
+      "lat": "14.31119",
+      "lng": "79.8043"
+    },
+    {
+      "country": "IN",
+      "name": "Vādippatti",
+      "lat": "10.08481",
+      "lng": "77.96113"
+    },
+    {
+      "country": "IN",
+      "name": "Vadamadurai",
+      "lat": "10.44081",
+      "lng": "78.09784"
+    },
+    {
+      "country": "IN",
+      "name": "Vadakku Valliyūr",
+      "lat": "8.38286",
+      "lng": "77.61221"
+    },
+    {
+      "country": "IN",
+      "name": "Vāda",
+      "lat": "19.65347",
+      "lng": "73.14811"
+    },
+    {
+      "country": "IN",
+      "name": "Ūttukkuli",
+      "lat": "11.16892",
+      "lng": "77.45431"
+    },
+    {
+      "country": "IN",
+      "name": "Uttiramerūr",
+      "lat": "12.61433",
+      "lng": "79.75748"
+    },
+    {
+      "country": "IN",
+      "name": "Uttarkāshi",
+      "lat": "30.72986",
+      "lng": "78.44342"
+    },
+    {
+      "country": "IN",
+      "name": "Uttamapālaiyam",
+      "lat": "9.80701",
+      "lng": "77.32718"
+    },
+    {
+      "country": "IN",
+      "name": "Utraula",
+      "lat": "27.31933",
+      "lng": "82.41872"
+    },
+    {
+      "country": "IN",
+      "name": "Utrān",
+      "lat": "21.23333",
+      "lng": "72.86667"
+    },
+    {
+      "country": "IN",
+      "name": "Usilampatti",
+      "lat": "9.96936",
+      "lng": "77.78621"
+    },
+    {
+      "country": "IN",
+      "name": "Usehat",
+      "lat": "27.79796",
+      "lng": "79.23763"
+    },
+    {
+      "country": "IN",
+      "name": "Uri",
+      "lat": "34.08064",
+      "lng": "74.05088"
+    },
+    {
+      "country": "IN",
+      "name": "Uravakonda",
+      "lat": "14.94348",
+      "lng": "77.25494"
+    },
+    {
+      "country": "IN",
+      "name": "Uran",
+      "lat": "18.87813",
+      "lng": "72.93924"
+    },
+    {
+      "country": "IN",
+      "name": "Uppiliyapuram",
+      "lat": "11.26356",
+      "lng": "78.5139"
+    },
+    {
+      "country": "IN",
+      "name": "Upleta",
+      "lat": "21.74015",
+      "lng": "70.28256"
+    },
+    {
+      "country": "IN",
+      "name": "Uppal Kalan",
+      "lat": "17.40577",
+      "lng": "78.55911"
+    },
+    {
+      "country": "IN",
+      "name": "Unnāo",
+      "lat": "26.54706",
+      "lng": "80.48781"
+    },
+    {
+      "country": "IN",
+      "name": "Unjha",
+      "lat": "23.80366",
+      "lng": "72.39101"
+    },
+    {
+      "country": "IN",
+      "name": "Uniāra",
+      "lat": "26.15336",
+      "lng": "75.21523"
+    },
+    {
+      "country": "IN",
+      "name": "Unhel",
+      "lat": "23.33794",
+      "lng": "75.55931"
+    },
+    {
+      "country": "IN",
+      "name": "Una",
+      "lat": "31.46493",
+      "lng": "76.26914"
+    },
+    {
+      "country": "IN",
+      "name": "Una",
+      "lat": "20.82318",
+      "lng": "71.03795"
+    },
+    {
+      "country": "IN",
+      "name": "Ūn",
+      "lat": "29.58479",
+      "lng": "77.2554"
+    },
+    {
+      "country": "IN",
+      "name": "Un",
+      "lat": "23.88745",
+      "lng": "71.76975"
+    },
+    {
+      "country": "IN",
+      "name": "Umri",
+      "lat": "26.51056",
+      "lng": "78.93667"
+    },
+    {
+      "country": "IN",
+      "name": "Umreth",
+      "lat": "22.69881",
+      "lng": "73.11561"
+    },
+    {
+      "country": "IN",
+      "name": "Umred",
+      "lat": "20.85396",
+      "lng": "79.32466"
+    },
+    {
+      "country": "IN",
+      "name": "Umrāla",
+      "lat": "21.84353",
+      "lng": "71.80305"
+    },
+    {
+      "country": "IN",
+      "name": "Umarkot",
+      "lat": "19.66529",
+      "lng": "82.20629"
+    },
+    {
+      "country": "IN",
+      "name": "Umarkhed",
+      "lat": "19.60144",
+      "lng": "77.68878"
+    },
+    {
+      "country": "IN",
+      "name": "Umaria",
+      "lat": "23.52473",
+      "lng": "80.83716"
+    }
+  ],
+  "currency": [
+    {
+      "cc": "AED",
+      "symbol": "\u062f.\u0625;",
+      "name": "UAE dirham"
+    },
+    {
+      "cc": "AFN",
+      "symbol": "Afs",
+      "name": "Afghan afghani"
+    },
+    {
+      "cc": "ALL",
+      "symbol": "L",
+      "name": "Albanian lek"
+    },
+    {
+      "cc": "AMD",
+      "symbol": "AMD",
+      "name": "Armenian dram"
+    },
+    {
+      "cc": "ANG",
+      "symbol": "NA\u0192",
+      "name": "Netherlands Antillean gulden"
+    },
+    {
+      "cc": "AOA",
+      "symbol": "Kz",
+      "name": "Angolan kwanza"
+    },
+    {
+      "cc": "ARS",
+      "symbol": "$",
+      "name": "Argentine peso"
+    },
+    {
+      "cc": "AUD",
+      "symbol": "$",
+      "name": "Australian dollar"
+    },
+    {
+      "cc": "AWG",
+      "symbol": "\u0192",
+      "name": "Aruban florin"
+    },
+    {
+      "cc": "AZN",
+      "symbol": "AZN",
+      "name": "Azerbaijani manat"
+    },
+    {
+      "cc": "BAM",
+      "symbol": "KM",
+      "name": "Bosnia and Herzegovina konvertibilna marka"
+    },
+    {
+      "cc": "BBD",
+      "symbol": "Bds$",
+      "name": "Barbadian dollar"
+    },
+    {
+      "cc": "BDT",
+      "symbol": "\u09f3",
+      "name": "Bangladeshi taka"
+    },
+    {
+      "cc": "BGN",
+      "symbol": "BGN",
+      "name": "Bulgarian lev"
+    },
+    {
+      "cc": "BHD",
+      "symbol": ".\u062f.\u0628",
+      "name": "Bahraini dinar"
+    },
+    {
+      "cc": "BIF",
+      "symbol": "FBu",
+      "name": "Burundi franc"
+    },
+    {
+      "cc": "BMD",
+      "symbol": "BD$",
+      "name": "Bermudian dollar"
+    },
+    {
+      "cc": "BND",
+      "symbol": "B$",
+      "name": "Brunei dollar"
+    },
+    {
+      "cc": "BOB",
+      "symbol": "Bs.",
+      "name": "Bolivian boliviano"
+    },
+    {
+      "cc": "BRL",
+      "symbol": "R$",
+      "name": "Brazilian real"
+    },
+    {
+      "cc": "BSD",
+      "symbol": "B$",
+      "name": "Bahamian dollar"
+    },
+    {
+      "cc": "BTN",
+      "symbol": "Nu.",
+      "name": "Bhutanese ngultrum"
+    },
+    {
+      "cc": "BWP",
+      "symbol": "P",
+      "name": "Botswana pula"
+    },
+    {
+      "cc": "BYR",
+      "symbol": "Br",
+      "name": "Belarusian ruble"
+    },
+    {
+      "cc": "BZD",
+      "symbol": "BZ$",
+      "name": "Belize dollar"
+    },
+    {
+      "cc": "CAD",
+      "symbol": "$",
+      "name": "Canadian dollar"
+    },
+    {
+      "cc": "CDF",
+      "symbol": "F",
+      "name": "Congolese franc"
+    },
+    {
+      "cc": "CHF",
+      "symbol": "Fr.",
+      "name": "Swiss franc"
+    },
+    {
+      "cc": "CLP",
+      "symbol": "$",
+      "name": "Chilean peso"
+    },
+    {
+      "cc": "CNY",
+      "symbol": "\u00a5",
+      "name": "Chinese/Yuan renminbi"
+    },
+    {
+      "cc": "COP",
+      "symbol": "Col$",
+      "name": "Colombian peso"
+    },
+    {
+      "cc": "CRC",
+      "symbol": "\u20a1",
+      "name": "Costa Rican colon"
+    },
+    {
+      "cc": "CUC",
+      "symbol": "$",
+      "name": "Cuban peso"
+    },
+    {
+      "cc": "CVE",
+      "symbol": "Esc",
+      "name": "Cape Verdean escudo"
+    },
+    {
+      "cc": "CZK",
+      "symbol": "K\u010d",
+      "name": "Czech koruna"
+    },
+    {
+      "cc": "DJF",
+      "symbol": "Fdj",
+      "name": "Djiboutian franc"
+    },
+    {
+      "cc": "DKK",
+      "symbol": "Kr",
+      "name": "Danish krone"
+    },
+    {
+      "cc": "DOP",
+      "symbol": "RD$",
+      "name": "Dominican peso"
+    },
+    {
+      "cc": "DZD",
+      "symbol": "\u062f.\u062c",
+      "name": "Algerian dinar"
+    },
+    {
+      "cc": "EEK",
+      "symbol": "KR",
+      "name": "Estonian kroon"
+    },
+    {
+      "cc": "EGP",
+      "symbol": "\u00a3",
+      "name": "Egyptian pound"
+    },
+    {
+      "cc": "ERN",
+      "symbol": "Nfa",
+      "name": "Eritrean nakfa"
+    },
+    {
+      "cc": "ETB",
+      "symbol": "Br",
+      "name": "Ethiopian birr"
+    },
+    {
+      "cc": "EUR",
+      "symbol": "\u20ac",
+      "name": "European Euro"
+    },
+    {
+      "cc": "FJD",
+      "symbol": "FJ$",
+      "name": "Fijian dollar"
+    },
+    {
+      "cc": "FKP",
+      "symbol": "\u00a3",
+      "name": "Falkland Islands pound"
+    },
+    {
+      "cc": "GBP",
+      "symbol": "\u00a3",
+      "name": "British pound"
+    },
+    {
+      "cc": "GEL",
+      "symbol": "GEL",
+      "name": "Georgian lari"
+    },
+    {
+      "cc": "GHS",
+      "symbol": "GH\u20b5",
+      "name": "Ghanaian cedi"
+    },
+    {
+      "cc": "GIP",
+      "symbol": "\u00a3",
+      "name": "Gibraltar pound"
+    },
+    {
+      "cc": "GMD",
+      "symbol": "D",
+      "name": "Gambian dalasi"
+    },
+    {
+      "cc": "GNF",
+      "symbol": "FG",
+      "name": "Guinean franc"
+    },
+    {
+      "cc": "GQE",
+      "symbol": "CFA",
+      "name": "Central African CFA franc"
+    },
+    {
+      "cc": "GTQ",
+      "symbol": "Q",
+      "name": "Guatemalan quetzal"
+    },
+    {
+      "cc": "GYD",
+      "symbol": "GY$",
+      "name": "Guyanese dollar"
+    },
+    {
+      "cc": "HKD",
+      "symbol": "HK$",
+      "name": "Hong Kong dollar"
+    },
+    {
+      "cc": "HNL",
+      "symbol": "L",
+      "name": "Honduran lempira"
+    },
+    {
+      "cc": "HRK",
+      "symbol": "kn",
+      "name": "Croatian kuna"
+    },
+    {
+      "cc": "HTG",
+      "symbol": "G",
+      "name": "Haitian gourde"
+    },
+    {
+      "cc": "HUF",
+      "symbol": "Ft",
+      "name": "Hungarian forint"
+    },
+    {
+      "cc": "IDR",
+      "symbol": "Rp",
+      "name": "Indonesian rupiah"
+    },
+    {
+      "cc": "ILS",
+      "symbol": "\u20aa",
+      "name": "Israeli new sheqel"
+    },
+    {
+      "cc": "INR",
+      "symbol": "\u20B9",
+      "name": "Indian rupee"
+    }
+  ]
+}

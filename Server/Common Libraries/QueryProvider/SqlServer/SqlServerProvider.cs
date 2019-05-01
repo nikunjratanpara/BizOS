@@ -7,11 +7,13 @@ using BizOS.Base.Contracts.DataAccess;
 using BizOS.Common.Extensions;
 using BizOS.Base.BL;
 using Microsoft.Extensions.Caching.Memory;
-using Unity;
+using SqlKata.Execution;
+using SqlKata.Compilers;
+using SqlKata;
 
 namespace QueryProvider.SqlServer
 {
-    internal class SqlServerProvider :BusinessComponent, IDBProvider
+    internal class SqlServerProvider : BusinessComponent, IDBProvider
     {
         private IDbConnection connection;
         const string Delete = "Delete";
@@ -24,14 +26,12 @@ namespace QueryProvider.SqlServer
             get => memoryCache = memoryCache ?? GetBusinessComponent<IMemoryCache>();
             set => memoryCache = value;
         }
-        private string queryProviderAlias;
-        internal string QueryProviderAlias
+        private Compiler _queryCompiler;
+        public Compiler QueryCompiler
         {
-            get => queryProviderAlias ;
-            set 
+            get
             {
-                queryProviderAlias = value;
-                QueryProvider = null;
+                return _queryCompiler = _queryCompiler ?? new SqlServerCompiler();
             }
         }
         internal IDbConnection Connection
@@ -41,11 +41,26 @@ namespace QueryProvider.SqlServer
                 return connection = connection ?? GetConnection();
             }
         }
-        private IQueryBase queryProvider = null;
-        internal IQueryBase QueryProvider
+        bool isCatch;
+        bool isFirst = true;
+        private bool IsCatch
         {
-            get { return queryProvider = queryProvider ?? GetBusinessComponent<IQueryBase>(QueryProviderAlias);  }
-            set { queryProvider = value;  }
+            get
+            {
+                if (isFirst)
+                {
+                    isCatch = false;
+                    if (AppSettings.GetSection("AppSettings")["UseCache"].IsNotNullOrEmpty())
+                    {
+                        Boolean.TryParse(AppSettings.GetSection("AppSettings")["UseCache"], out isCatch);
+                    }
+                    isFirst = false;
+                }
+                return isCatch;
+            }
+        }
+        public SqlServerProvider(IServiceProvider provider): base(provider)
+        {
         }
         #region "Connection"
         public IDbConnection GetConnection()
@@ -54,11 +69,13 @@ namespace QueryProvider.SqlServer
         }
         public IDbConnection GetConnection(string connectionString)
         {
+
             if (connectionString.IsNullOrEmpty())
                 throw new NoNullAllowedException("Invalid Connection String");
-
+            
             return new SqlConnection(connectionString);
         }
+        public QueryFactory db => new QueryFactory(GetConnection(), QueryCompiler);
         #endregion
         #region "Crude Query"
         public string GetDeleteQuery(string tableName)
@@ -146,16 +163,9 @@ namespace QueryProvider.SqlServer
             return query;
         }
         #endregion
-        public void InitQueryProvider(string alias)
-        {
-            QueryProviderAlias = alias;
-        }
-        public string GetQuery(string code)
-        {
-            return QueryProvider.GetQuery(code);
-        }
         public string Paginate(string query, PaginationSettings paginationSettings)
         {
+            
             StringBuilder queryBuilder = new StringBuilder();
             queryBuilder.Append(query);
             queryBuilder.Append(" Order By ");
@@ -184,28 +194,6 @@ namespace QueryProvider.SqlServer
             }
             return countQuery;
         }
-        bool isCatch;
-        bool isFirst = true;
-
-        public SqlServerProvider(IUnityContainer container) : base(container)
-        {
-        }
-
-        private bool IsCatch
-        {
-            get
-            {
-                if (isFirst)
-                {
-                    isCatch = false;
-                    if (AppSettings.GetSection("AppSettings")["UseCache"].IsNotNullOrEmpty())
-                    {
-                        Boolean.TryParse(AppSettings.GetSection("AppSettings")["UseCache"], out isCatch);
-                    }
-                    isFirst = false;
-                }
-                return isCatch;
-            }
-        }
+       
     }
 }

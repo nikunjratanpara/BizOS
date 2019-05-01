@@ -7,43 +7,43 @@ using BizOS.Common.Contracts.DynamicGrid.Models;
 using BizOS.Common.Extensions;
 using BizOS.Common.Repository.DynamicGrid.DomainObjects;
 using Dapper;
+using QueryProvider.Contracts.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Unity;
+using System.Threading.Tasks;
+using SqlKata.Execution;
 using static Dapper.SqlMapper;
+using SqlKata;
+using BizOS.Common.Contracts.DynamicForm.Models;
 
 namespace BizOS.Common.Repository.DynamicGrid
 {
     public class DynamicGridRepository : BaseRepository, IDynamicGridRepository
     {
         private IDynamicFormRepository dynamicFormRepository;
-
-        public DynamicGridRepository(IUnityContainer unityContainer) : base(unityContainer, QueryProviders.DynamicGrid)
-        {
-        }
-
         internal IDynamicFormRepository DynamicFormRepository
         {
             get { return dynamicFormRepository = dynamicFormRepository ?? GetRepository<IDynamicFormRepository>(); }
         }
-        public GridOutcome GetData(string GridConfigId, GridDataRequest gridDataRequest)
+
+        private IDynamicGridQueryProvider _dynamicGridQueryProvider;
+        internal IDynamicGridQueryProvider DynamicGridQueryProvider
+        {
+            get { return _dynamicGridQueryProvider = _dynamicGridQueryProvider ?? GetRepository<IDynamicGridQueryProvider>(); }
+        }
+
+        public DynamicGridRepository(IServiceProvider provider): base(provider)
+        {
+        }
+
+        public async Task<GridOutcome> GetDataAsync(string GridConfigId, GridDataRequest gridDataRequest)
         {
             GridOutcome outcome = null;
             if (GridConfigId.IsNotNullOrEmpty())
             {
-                outcome = new GridOutcome();
-                object param = new object();
-                string sql = GetDataQuery(GridConfigId, gridDataRequest);
-                if (gridDataRequest.Parameters.IsNotNullOrEmpty())
-                {
-                    param = gridDataRequest.Parameters.ToDynamicObject();
-                }
-                GridReader reader = Connection.QueryMultiple(sql, param);
-                outcome.ResultSet = reader.Read<dynamic>().ToList();
-                outcome.PageNo = gridDataRequest.PageNo;
-                outcome.TotalRecords = reader.Read<int>().Single();
+                outcome = await GetDataQueryAsync(GridConfigId, gridDataRequest);
             }
             return outcome;
         }
@@ -51,11 +51,10 @@ namespace BizOS.Common.Repository.DynamicGrid
         public GridConfiguration GetGridConfig(string GridConfigId)
         {
             GridConfiguration gridConfiguration = null;
-            string sql = GetQuery("GridConfiguration");
             using (Connection)
             {
                 gridConfiguration = Connection.Query<GridConfiguration, SourceConfiguration, GridConfiguration>(
-                        sql,
+                        DynamicGridQueryProvider.GridConfiguration,
                         (gridConfig, sourceConfig) =>
                         {
                             gridConfig.Source = sourceConfig;
@@ -75,82 +74,106 @@ namespace BizOS.Common.Repository.DynamicGrid
             }
             return gridConfiguration;
         }
-        private string GetDataQuery(string GridConfigId, GridDataRequest gridDataRequest)
+        private async Task<GridOutcome> GetDataQueryAsync(string GridConfigId, GridDataRequest gridDataRequest)
         {
             StringBuilder queryBuilder = new StringBuilder();
-            string sqlSource = GetQuery("SqlSourceConfiguration");
-            string sql = GetQuery("GridConfiguration");
-            SqlSourceConfiguration sourceConfig = Connection.Query<SqlSourceConfiguration>(sqlSource, new { GridConfigId }).FirstOrDefault();
+            Task<SqlSourceConfiguration> sourceConfigTask = GetSourceConfig(GridConfigId);
+            Task<GridConfigurationEO> gridConfigurationTask = GetGridConfiguration(GridConfigId);
+            await Task.WhenAll(sourceConfigTask, gridConfigurationTask);
 
-            GridConfigurationEO gridConfiguration = Connection.Query<GridConfigurationEO>(sql, new { GridConfigId }).FirstOrDefault();
+            SqlSourceConfiguration sourceConfig = sourceConfigTask.Result;
+            GridConfigurationEO gridConfiguration = gridConfigurationTask.Result;
+
             gridConfiguration.Controls = DynamicFormRepository.GetFormControls(gridConfiguration.SearchConfigId).AsList();
 
+            Query query = null;
+            Query countQuery = null;
             if (sourceConfig == null)
             {
-                queryBuilder.Append("Select ");
-                queryBuilder.Append("* ");
-                queryBuilder.Append(" from ");
-                queryBuilder.Append(gridConfiguration.TableName);
+                query = db.Query(gridConfiguration.TableName);
             }
             else
             {
-                queryBuilder.Append(sourceConfig.SqlQuery);
+                query = db.Query().FromRaw(sourceConfig.SqlQuery);
                 if (sourceConfig.Condition.IsNotNullOrEmpty())
                 {
-                    queryBuilder.Append(sourceConfig.Condition);
+                    query = query.Where(sourceConfig.Condition);
                 }
             }
-
             if (gridConfiguration.Controls.IsNotNullOrEmpty() && gridDataRequest.Parameters.IsNotNullOrEmpty())
             {
-                if(!queryBuilder.ToString().Contains(" where "))
-                    queryBuilder.Append(" where ");
-                gridConfiguration.Controls.ForEach
-                    (control =>
-                        {
-                            if (gridDataRequest.Parameters.ContainsKey(control.Name))
-                            {
-                                queryBuilder.Append(control.Name);
-                                queryBuilder.Append(" ");
-                                queryBuilder.Append(control.SearchOperator);
-                                queryBuilder.Append(" @");
-                                queryBuilder.Append(control.Name);
-                                queryBuilder.Append(" And ");
-                            }
-                        }
-                    );
-                queryBuilder = queryBuilder.Remove(queryBuilder.Length - 4, 4);
-            }
-            if(gridDataRequest.OrderBy.IsNotNullOrEmpty())
-            {
-                PaginationSettings paginationSettings = new PaginationSettings
+                IEnumerable<FormFieldConfiguration> controls = gridConfiguration.Controls.Where(control => gridDataRequest.Parameters.ContainsKey(control.Name));
+                foreach (FormFieldConfiguration control in controls)
                 {
-                    OrderBy = gridDataRequest.OrderBy,
-                    PageNo = gridDataRequest.PageNo,
-                    PageSize = gridDataRequest.PageSize
-                };
-                string query = queryBuilder.ToString();
-                queryBuilder.Clear();
-                queryBuilder.Append(Paginate(query, paginationSettings));
-                queryBuilder.Append(Environment.NewLine);
-                queryBuilder.Append(GetCountQuery(queryBuilder.ToString()));
+                    HandleSearchOperators(gridDataRequest, control,query);
+                }
             }
-            return queryBuilder.ToString();
+            countQuery = db.FromQuery(query).AsCount();
+            if (gridDataRequest.OrderBy.IsNotNullOrEmpty())
+            {
+                query = query.OrderBy(gridDataRequest.OrderBy);
+            }
+            if (gridDataRequest.PageNo > 0 && gridDataRequest.PageSize > 0)
+            {
+                query = query.Skip((gridDataRequest.PageNo - 1) * gridDataRequest.PageSize).Take(gridDataRequest.PageSize);
+            }
+            Task<IEnumerable<dynamic>> resultSet = query.GetAsync<dynamic>();
+            int cnt = db.ExecuteScalar<int>(countQuery);
+            Task.WaitAll(resultSet);
+            Task<GridOutcome> gridOutcome = new Task<GridOutcome>(() => {
+                return new GridOutcome
+                {
+                    ResultSet = resultSet.Result.ToList(),
+                    PageNo = gridDataRequest.PageNo,
+                    TotalRecords = cnt
+                };
+            });
+            gridOutcome.RunSynchronously();
+            return await gridOutcome ;
         }
+
+        private void HandleSearchOperators(GridDataRequest gridDataRequest, FormFieldConfiguration control, Query query)
+        {
+            if (control.SearchOperator.ToUpper() == Operators.CONTAINS)
+                query.WhereContains(control.Name, gridDataRequest.Parameters[control.Name].ToString());
+            else if (control.SearchOperator.ToUpper() == Operators.STARTWITH)
+                query.WhereStarts(control.Name, gridDataRequest.Parameters[control.Name].ToString());
+            else if (control.SearchOperator.ToUpper() == Operators.ENDWITH)
+                query.WhereEnds(control.Name, gridDataRequest.Parameters[control.Name].ToString());
+            else if (control.SearchOperator.ToUpper() == Operators.BETWEEN)
+                query.WhereBetween(control.Name, gridDataRequest.Parameters[control.Name].ToString(), gridDataRequest.Parameters[control.Name].ToString());
+            else
+                query.Where(control.Name, control.SearchOperator, gridDataRequest.Parameters[control.Name]);
+        }
+
+        private async Task<GridConfigurationEO> GetGridConfiguration(string GridConfigId)
+        {
+            return await db.Query(DynamicGridQueryProvider.GridConfiguration)
+                            .Where(new { GridConfigId })
+                            .Select(DynamicGridQueryProvider.GridConfigurationColumns)
+                            .FirstOrDefaultAsync<GridConfigurationEO>();
+        }
+
+        private async Task<SqlSourceConfiguration> GetSourceConfig(string GridConfigId)
+        {
+            return await db.Query(DynamicGridQueryProvider.SqlSourceConfiguration)
+                            .Where(new { GridConfigId })
+                            .Select(DynamicGridQueryProvider.SqlSourceConfigurationColumns)
+                            .FirstOrDefaultAsync<SqlSourceConfiguration>();
+        }
+
+        
         private List<GridColumnConfiguration> GetGridColumns(string GridConfigId)
         {
             List<GridColumnConfiguration> gridColumnsConfiguration = null;
-            string sql = GetQuery("GridColumnConfiguration");
             using (Connection)
             {
-                gridColumnsConfiguration = Connection.Query<GridColumnConfiguration>(sql, new { GridConfigId }).AsList();
+                gridColumnsConfiguration = db.Query(DynamicGridQueryProvider.GridColumnConfiguration)
+                    .Select(DynamicGridQueryProvider.GridColumnConfigurationColumns)
+                    .Where(new { GridConfigId })
+                    .Get<GridColumnConfiguration>().ToList(); 
             }
             return gridColumnsConfiguration;
-        }
-
-        public override object GetPocoObject<T>(T Model)
-        {
-            return Model;
         }
     }
 }

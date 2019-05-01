@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>F:\BizOS\Server\Deployment\wwwroot</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common Libraries\Common\BL\BizOS.Base.BL\BizOS.Base.BL.csproj" />
+    <ProjectReference Include="..\Accounts.Base.Contracts\Accounts.Base.Contracts.csproj" />
+  </ItemGroup>
+
+</Project>

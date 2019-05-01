@@ -5,11 +5,13 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>E:\BizOS\Server\Deployment\Other dlls</OutputPath>
+    <OutputPath>F:\BizOS\Server\Deployment\wwwroot</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.1.1" />
+    <PackageReference Include="SqlKata" Version="1.1.7" />
+    <PackageReference Include="SqlKata.Execution" Version="1.1.7" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,6 +19,7 @@
     <ProjectReference Include="..\..\Common\Utils\BizOS.Common\BizOS.Common.csproj" />
     <ProjectReference Include="..\..\Contracts\BizOS.Base.Contracts\BizOS.Base.Contracts.csproj" />
     <ProjectReference Include="..\..\Contracts\BizOS.Common.Contracts\BizOS.Common.Contracts.csproj" />
+    <ProjectReference Include="..\QueryProvider.Contracts\QueryProvider.Contracts.csproj" />
   </ItemGroup>
 
   <ItemGroup>

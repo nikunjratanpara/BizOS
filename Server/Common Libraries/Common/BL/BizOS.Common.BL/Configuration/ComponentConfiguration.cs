@@ -9,7 +9,7 @@ using BizOS.Common.Contracts.Module;
 using BizOS.Base.Contracts.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System.Composition;
-using Unity;
+
 
 namespace BizOS.Common.BL.Configuration
 {
@@ -20,19 +20,19 @@ namespace BizOS.Common.BL.Configuration
         {
         }
 
-        public void RegisterServices(IUnityContainer container)
+        public void RegisterServices(IServiceCollection container)
         {
-            container.RegisterType<IDynamicFormComponent,DynamicFormComponent>();
-            container.RegisterType<IDynamicFormFacade,DynamicFormFacade>();
+            container.AddScoped<IDynamicFormComponent,DynamicFormComponent>();
+            container.AddScoped<IDynamicFormFacade,DynamicFormFacade>();
 
-            container.RegisterType<ICatalogComponent,CatalogComponent>();
-            container.RegisterType<ICatalogServiceFacade,CatalogServiceFacade>();
+            container.AddScoped<ICatalogComponent,CatalogComponent>();
+            container.AddScoped<ICatalogServiceFacade,CatalogServiceFacade>();
 
-            container.RegisterType<IDynamicGridComponent,DynamicGridComponent>();
-            container.RegisterType<IDynamicGridFacade,DynamicGridFacade>();
+            container.AddScoped<IDynamicGridComponent,DynamicGridComponent>();
+            container.AddScoped<IDynamicGridFacade,DynamicGridFacade>();
 
-            container.RegisterType<IModuleComponent,ModuleComponent>();
-            container.RegisterType<IModuleFacade,ModuleFacade>();
+            container.AddScoped<IModuleComponent,ModuleComponent>();
+            container.AddScoped<IModuleFacade,ModuleFacade>();
         }
     }
 }

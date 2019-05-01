@@ -2,11 +2,10 @@ Drop Table [GridColumnConfiguration]
 Drop Table [SqlSourceConfiguration]
 Drop Table [GridConfiguration]
 Drop Table [FormFieldConfiguration]
-Drop Table [CatalogDictionary]
 Drop Table [FormConfiguration]
+Drop Table [CatalogDictionary]
 Drop Table [ModuleMenu]
-Drop Table [ModuleCatalog]
-
+DROP Table [ModuleCatalog]
 
 CREATE TABLE ModuleCatalog
 (

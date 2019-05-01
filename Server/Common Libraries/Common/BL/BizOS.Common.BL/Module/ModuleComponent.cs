@@ -5,7 +5,7 @@ using BizOS.Common.Contracts.Module.DomainObjects;
 using BizOS.Common.Contracts.Module.Models;
 using BizOS.Common.Extensions;
 using BizOS.Base.BL;
-using Unity;
+using System;
 
 namespace BizOS.Common.BL.Module
 {
@@ -13,7 +13,7 @@ namespace BizOS.Common.BL.Module
     {
         private IModuleRepository moduleRepository;
 
-        public ModuleComponent(IUnityContainer container) : base(container)
+        public ModuleComponent(IServiceProvider provider): base(provider)
         {
         }
 

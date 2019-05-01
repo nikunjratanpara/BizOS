@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BizOS.Common.Contracts.Catalog.Models;
-using Unity;
+
 
 namespace BizOS.Common.BL.Catalog
 {
@@ -14,7 +14,7 @@ namespace BizOS.Common.BL.Catalog
     {
         ICatalogComponent catalogComponent;
 
-        public CatalogServiceFacade(IUnityContainer container) : base(container)
+        public CatalogServiceFacade(IServiceProvider provider): base(provider)
         {
         }
 
@@ -28,9 +28,19 @@ namespace BizOS.Common.BL.Catalog
             return CatalogComponent.GetCatalogData(catalogRequest);
         }
 
+        public Task<IEnumerable<CatalogData>> GetCatalogDataAsync(CatalogRequest catalogRequest)
+        {
+            return CatalogComponent.GetCatalogDataAsync(catalogRequest);
+        }
+
         public CatalogMetaData GetCatalogMetaData(string catalogName)
         {
             return CatalogComponent.GetCatalogMetaData(catalogName);
+        }
+
+        public Task<CatalogMetaData> GetCatalogMetaDataAsync(string catalogName)
+        {
+            return CatalogComponent.GetCatalogMetaDataAsync(catalogName);
         }
     }
 }

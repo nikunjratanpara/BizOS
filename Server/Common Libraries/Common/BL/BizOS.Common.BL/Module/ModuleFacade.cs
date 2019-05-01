@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Unity;
+
 
 namespace BizOS.Common.BL.Module
 {
@@ -14,7 +14,7 @@ namespace BizOS.Common.BL.Module
     {
         private IModuleComponent moduleComponent;
 
-        public ModuleFacade(IUnityContainer container) : base(container)
+        public ModuleFacade(IServiceProvider provider): base(provider)
         {
         }
 

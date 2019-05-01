@@ -1,8 +1,9 @@
 ﻿using BizOS.Common.Contracts.Catalog;
 using BizOS.Common.Contracts.Catalog.Models;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
-using Unity;
+using System.Threading.Tasks;
 
 namespace BizOS.Application.Controllers
 {
@@ -11,14 +12,14 @@ namespace BizOS.Application.Controllers
     public class CatalogController :ControllerBase
     {
         private ICatalogServiceFacade CatalogService;
-        public CatalogController(IUnityContainer container)
+        public CatalogController(ICatalogServiceFacade catalogService)
         {
-            this.CatalogService = container.Resolve<ICatalogServiceFacade>();
+            this.CatalogService = catalogService;
         }
         [HttpPost()]
-        public List<CatalogData> GetCatalogData(CatalogRequest catalogRequest)
+        public async Task<IEnumerable<CatalogData>> GetCatalogDataAsync(CatalogRequest catalogRequest)
         {
-            return CatalogService.GetCatalogData(catalogRequest);
+            return await CatalogService.GetCatalogDataAsync(catalogRequest);
         }
         [HttpGet()]
         public CatalogMetaData GetCatalogDefination([FromQuery]string CatalogName)

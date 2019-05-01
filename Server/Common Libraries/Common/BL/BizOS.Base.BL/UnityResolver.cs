@@ -6,16 +6,17 @@ using System.Reflection;
 using System.IO;
 using System.Runtime.Loader;
 using System.Composition.Hosting;
-using Unity;
+
+using Microsoft.Extensions.DependencyInjection;
 
 namespace BizOS.Base.BL
 {
-    public class UnityResolver
+    public class DependencyConfiguration
     {
         [ImportMany("IComponentConfiguration")]
         public IEnumerable<IComponentConfiguration> ComponentConfigurations { get; set; }
-        protected IUnityContainer container;
-        public UnityResolver(IUnityContainer container)
+        protected IServiceCollection container;
+        public DependencyConfiguration(IServiceCollection container)
         {
             this.container = container;
             string appPath = System.IO.Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().GetName().CodeBase).Replace("file:\\", "");
@@ -37,7 +38,6 @@ namespace BizOS.Base.BL
             {
                 Configuration.RegisterServices(container);
             });
-            UnityContainerInstance.Container = container;
         }
     }
 }

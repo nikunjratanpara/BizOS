@@ -3,7 +3,6 @@ using BizOS.Common.Contracts.DynamicForm;
 using BizOS.Common.Contracts.DynamicForm.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
-using Unity;
 
 namespace BizOS.Application.Controllers
 {
@@ -11,9 +10,9 @@ namespace BizOS.Application.Controllers
     [ApiController]
     public class DynamicFormController : ControllerBase
     {
-        public DynamicFormController(IUnityContainer container)
+        public DynamicFormController(IDynamicFormFacade dynamicFormFacade)
         {
-            DynamicFormFacade = container.Resolve<IDynamicFormFacade>();
+            DynamicFormFacade = dynamicFormFacade;
         }
         public IDynamicFormFacade DynamicFormFacade { get; }
         [HttpGet("{id}")]

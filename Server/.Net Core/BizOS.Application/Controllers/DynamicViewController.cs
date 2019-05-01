@@ -2,7 +2,7 @@
 using BizOS.Common.Contracts.DynamicGrid;
 using BizOS.Common.Contracts.DynamicView.Models;
 using Microsoft.AspNetCore.Mvc;
-using Unity;
+using System;
 
 namespace BizOS.Application.Controllers
 {
@@ -10,20 +10,20 @@ namespace BizOS.Application.Controllers
     [ApiController]
     public class DynamicViewController : ControllerBase
     {
-        private IDynamicFormFacade dynamicFormFacade;
-        private IDynamicGridFacade dynamicGridFacade;
-        public DynamicViewController(IUnityContainer container)
+        private IDynamicFormFacade DynamicFormFacade;
+        private IDynamicGridFacade DynamicGridFacade;
+        public DynamicViewController(IDynamicFormFacade dynamicFormFacade, IDynamicGridFacade dynamicGridFacade)
         {
-            dynamicFormFacade = container.Resolve<IDynamicFormFacade>(); 
-            dynamicGridFacade = container.Resolve<IDynamicGridFacade>();
+            DynamicFormFacade = dynamicFormFacade;
+            DynamicGridFacade = dynamicGridFacade;
 
         }
         [HttpGet("{id}")]
         public DynamicView Get(string id)
         {
             DynamicView dynamicView = new DynamicView();
-            dynamicView.FormConfig = dynamicFormFacade.GetFormConfig(id);
-            dynamicView.GridConfig = dynamicGridFacade.GetGridConfig(dynamicView.FormConfig.GridConfigId);
+            dynamicView.FormConfig = DynamicFormFacade.GetFormConfig(id);
+            dynamicView.GridConfig = DynamicGridFacade.GetGridConfig(dynamicView.FormConfig.GridConfigId);
             return dynamicView;
         }
     }

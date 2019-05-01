@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BizOS.Common.Contracts.DynamicGrid.Models;
-using Unity;
+
 
 namespace BizOS.Common.BL.DynamicGrid
 {
@@ -14,7 +14,7 @@ namespace BizOS.Common.BL.DynamicGrid
     {
         private IDynamicGridComponent dynamicGridComponent;
 
-        public DynamicGridFacade(IUnityContainer container) : base(container)
+        public DynamicGridFacade(IServiceProvider provider): base(provider)
         {
         }
 
@@ -29,9 +29,9 @@ namespace BizOS.Common.BL.DynamicGrid
                 dynamicGridComponent = value;
             }
         }
-        public GridOutcome GetData(string GridConfigId, GridDataRequest gridDataRequest)
+        public Task<GridOutcome> GetDataAsync(string GridConfigId, GridDataRequest gridDataRequest)
         {
-            return DynamicGridComponent.GetData(GridConfigId, gridDataRequest);
+            return DynamicGridComponent.GetDataAsync(GridConfigId, gridDataRequest);
         }
 
         public GridConfiguration GetGridConfig(string GridConfigId)

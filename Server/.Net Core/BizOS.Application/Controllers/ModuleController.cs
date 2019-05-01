@@ -2,7 +2,7 @@
 using BizOS.Common.Contracts.Module.Models;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Unity;
+
 
 namespace BizOS.Application.Controllers
 {
@@ -11,9 +11,9 @@ namespace BizOS.Application.Controllers
     public class ModuleController : ControllerBase
     {
         IModuleFacade ModuleFacade;
-        public ModuleController(IUnityContainer container)
+        public ModuleController(IModuleFacade moduleFacade)
         {
-            this.ModuleFacade = container.Resolve<IModuleFacade>();
+            this.ModuleFacade = moduleFacade;
         }
         [HttpGet("{moduleId}/menu")]
         public List<MenuConfig> Menu(string moduleId)

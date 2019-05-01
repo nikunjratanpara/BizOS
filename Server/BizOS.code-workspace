@@ -1,0 +1,20 @@
+{
+	"folders": [
+		{
+			"path": ".Net Core"
+		},
+		{
+			"path": "Accounts"
+		},
+		{
+			"path": "Common Libraries\\Common"
+		},
+		{
+			"path": "Common Libraries\\Contracts"
+		},
+		{
+			"path": "Common Libraries\\QueryProvider"
+		}
+	],
+	"settings": {}
+}

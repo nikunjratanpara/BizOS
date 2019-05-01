@@ -1,29 +1,27 @@
 ﻿using BizOS.Common.Reflection;
 using Dapper;
-using BizOS.Base.Contracts;
 using BizOS.Base.Contracts.DataAccess;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using BizOS.Common.Extensions;
 using System.Linq;
-using System.Configuration;
-using Microsoft.Extensions.Options;
-using Unity;
+using BizOS.Base.Contracts.Repository;
+using SqlKata.Compilers;
+using SqlKata.Execution;
 
 namespace BizOS.Base.BL.DataAccess
 {
     public abstract class BaseRepository : BusinessComponent, IBaseRepository
     {
-        public BaseRepository(IUnityContainer container, string queryProvider): base(container)
+        public BaseRepository(IServiceProvider container): base(container)
         {
-            DBProvider.InitQueryProvider(queryProvider);
         }
         private const string defaultDBProvider = "";
         private IDBProvider dbProvider = null;
         public IDBProvider DBProvider
         {
-            get => dbProvider = dbProvider ?? GetBusinessComponent<IDBProvider>(DBProviderSetting);
+            get => dbProvider = dbProvider ?? GetBusinessComponent<IDBProvider>();
             set => dbProvider = value;
         }
         internal string DBProviderSetting
@@ -35,7 +33,16 @@ namespace BizOS.Base.BL.DataAccess
         {
             get => connection = connection ?? DBProvider.GetConnection();
         }
+        private IDatabaseOperators operators { get; set; }
+        public IDatabaseOperators Operators {
+            get => operators = operators ?? GetBusinessComponent<IDatabaseOperators>();
+        }
         private IDbTransaction Transaction { get; set; }
+
+        public Compiler QueryCompiler => DBProvider.QueryCompiler;
+
+        public QueryFactory db => DBProvider.db;
+
         public bool BeginTransaction()
         {
             if (Transaction == null)
@@ -131,7 +138,6 @@ namespace BizOS.Base.BL.DataAccess
             }
             return updatedObj;
         }
-        public abstract object GetPocoObject<T>(T Model);
         
         private void OpenConnection()
         {
@@ -183,10 +189,6 @@ namespace BizOS.Base.BL.DataAccess
         {
             return DBProvider.GetObjectQuery(tableName);
         }
-        public string GetQuery(string code)
-        {
-            return DBProvider.GetQuery(code);
-        }
         public string Paginate(string query, PaginationSettings paginationSettings)
         {
             return DBProvider.Paginate(query, paginationSettings);
@@ -194,10 +196,6 @@ namespace BizOS.Base.BL.DataAccess
         public string GetCountQuery(string query)
         {
             return DBProvider.GetCountQuery(query);
-        }
-        public void InitQueryProvider(string alias)
-        {
-            DBProvider.InitQueryProvider(alias);
         }
         #endregion
     }

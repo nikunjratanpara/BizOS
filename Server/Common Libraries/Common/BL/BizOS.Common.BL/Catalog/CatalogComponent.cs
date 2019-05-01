@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Unity;
+
 
 namespace BizOS.Common.BL.Catalog
 {
@@ -15,7 +15,7 @@ namespace BizOS.Common.BL.Catalog
     {
         private ICatalogRepository catalogRepository;
 
-        public CatalogComponent(IUnityContainer container) : base(container)
+        public CatalogComponent(IServiceProvider provider): base(provider)
         {
         }
 
@@ -25,10 +25,18 @@ namespace BizOS.Common.BL.Catalog
         }
         public List<CatalogData> GetCatalogData(CatalogRequest catalogRequest)
         {
-            List<CatalogData> CatalogData = null;
+            IEnumerable<CatalogData> CatalogData = null;
             if (catalogRequest != null && catalogRequest.Filter != null)
                 CatalogData = CatalogRepository.GetCatalogData(catalogRequest);
-            return CatalogData;
+            return CatalogData?.ToList();
+        }
+
+        public async Task<IEnumerable<CatalogData>> GetCatalogDataAsync(CatalogRequest catalogRequest)
+        {
+            Task<IEnumerable<CatalogData>> CatalogData = null;
+            if (catalogRequest != null && catalogRequest.Filter != null)
+                CatalogData = CatalogRepository.GetCatalogDataAsync(catalogRequest);
+            return await CatalogData;
         }
 
         public CatalogMetaData GetCatalogMetaData(string catalogName)
@@ -37,6 +45,14 @@ namespace BizOS.Common.BL.Catalog
             if (catalogName.IsNotNullOrEmpty())
                 catalogDefination = CatalogRepository.GetCatalogMetaData(catalogName);
             return catalogDefination;
+        }
+
+        public async Task<CatalogMetaData> GetCatalogMetaDataAsync(string catalogName)
+        {
+            Task<CatalogMetaData> catalogDefination = null;
+            if (catalogName.IsNotNullOrEmpty())
+                catalogDefination = CatalogRepository.GetCatalogMetaDataAsync(catalogName);
+            return await catalogDefination;
         }
     }
 }

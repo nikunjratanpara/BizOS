@@ -1,10 +1,11 @@
 ﻿using BizOS.Base.Contracts.Configuration;
 using BizOS.Base.Contracts.DataAccess;
-using BizOS.Common.Contracts;
-using BizOS.Common.Contracts.Constants;
+using Microsoft.Extensions.DependencyInjection;
+using QueryProvider.Contracts.Common;
 using QueryProvider.SqlServer.QueryBase;
 using System.Composition;
-using Unity;
+using System.Data;
+using System.Data.SqlClient;
 
 namespace QueryProvider.SqlServer.Configuration
 {
@@ -15,13 +16,14 @@ namespace QueryProvider.SqlServer.Configuration
         {
         }
 
-        public void RegisterServices(IUnityContainer container)
+        public void RegisterServices(IServiceCollection container)
         {
-            container.RegisterType<IDBProvider, SqlServerProvider>("SqlServer");
-            container.RegisterType<IQueryBase, DynamicGridQueryBase>(QueryProviders.DynamicGrid);
-            container.RegisterType<IQueryBase, DynamicFormQueryBase>(QueryProviders.DynamicForm);
-            container.RegisterType<IQueryBase, CatalogQueryBase>(QueryProviders.Catalog);
-            container.RegisterType<IQueryBase, ModuleQueryBase>(QueryProviders.Module);
+            container.AddScoped<IDBProvider, SqlServerProvider>();
+            container.AddScoped<IDatabaseOperators, Operators>();
+            container.AddScoped<ICatalogQueryProvider, CatalogQueryProvider>();
+            container.AddScoped<IDynamicFormQueryProvider, DynamicFormQueryProvider>();
+            container.AddScoped<IDynamicGridQueryProvider, DynamicGridQueryProvider>();
+            container.AddScoped<IModuleQueryProvider, ModuleQueryProvider>();
         }
     }
 }

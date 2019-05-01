@@ -1,11 +1,11 @@
 ﻿using BizOS.Common.Contracts.DynamicGrid.Models;
-using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace BizOS.Common.Contracts.DynamicGrid
 {
     public interface IDynamicGridFacade
     {
         GridConfiguration GetGridConfig(string GridConfigId);
-        GridOutcome GetData(string GridConfigId, GridDataRequest gridDataRequest);
+        Task<GridOutcome> GetDataAsync(string GridConfigId, GridDataRequest gridDataRequest);
     }
 }

@@ -1,7 +1,8 @@
 ﻿using BizOS.Common.Contracts.DynamicGrid;
 using BizOS.Common.Contracts.DynamicGrid.Models;
 using Microsoft.AspNetCore.Mvc;
-using Unity;
+using System;
+using System.Threading.Tasks;
 
 namespace BizOS.Application.Controllers
 {
@@ -10,9 +11,9 @@ namespace BizOS.Application.Controllers
     public class DynamicGridController : ControllerBase
     {
         private IDynamicGridFacade DynamicGridFacade;
-        public DynamicGridController(IUnityContainer container)
+        public DynamicGridController(IDynamicGridFacade dynamicGridFacade)
         {
-            this.DynamicGridFacade = container.Resolve<IDynamicGridFacade>();
+            this.DynamicGridFacade = dynamicGridFacade;
         }
         [HttpGet("{id}")]
         public GridConfiguration GetGridConfig(string id)
@@ -20,9 +21,9 @@ namespace BizOS.Application.Controllers
             return DynamicGridFacade.GetGridConfig(id);
         }
         [HttpPost("{id}")]
-        public GridOutcome GetData(string id,[FromBody] GridDataRequest parameters)
+        public async Task<GridOutcome> GetDataAsync(string id,[FromBody] GridDataRequest parameters)
         {
-            return DynamicGridFacade.GetData(id, parameters);
+            return await DynamicGridFacade.GetDataAsync(id, parameters);
         }
     }
 }

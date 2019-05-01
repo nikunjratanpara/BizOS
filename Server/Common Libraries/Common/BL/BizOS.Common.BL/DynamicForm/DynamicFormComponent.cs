@@ -8,7 +8,7 @@ using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity;
+
 
 namespace BizOS.Common.BL.DynamicForm
 {
@@ -16,7 +16,7 @@ namespace BizOS.Common.BL.DynamicForm
     {
         private IDynamicFormRepository dynamicFormRepository;
 
-        public DynamicFormComponent(IUnityContainer container) : base(container)
+        public DynamicFormComponent(IServiceProvider provider): base(provider)
         {
         }
 

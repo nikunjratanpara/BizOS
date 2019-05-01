@@ -1,37 +1,39 @@
 ﻿using BizOS.Base.Contracts;
+using BizOS.Base.Contracts.Component;
 using Microsoft.Extensions.Configuration;
-using Unity;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BizOS.Base.BL
 {
     public class BusinessComponent : IBusinessComponent
     {
-        private IUnityContainer _container; 
-        public BusinessComponent(IUnityContainer container)
+        private IServiceProvider _container; 
+        public BusinessComponent(IServiceProvider container)
         {
             _container = container;
         }
         private IConfiguration appSettings = null;
         protected IConfiguration AppSettings
         {
-            get => appSettings = appSettings ?? (IConfiguration) _container.Resolve(typeof(IConfiguration));
+            get => appSettings = appSettings ?? (IConfiguration) _container.GetService<IConfiguration>();
             set => appSettings = value;
         }
-        public T GetBusinessComponent<T>()
+        public T GetBusinessComponent<T>() => _container.GetService<T>();
+       
+        public T GetRepository<T>() => _container.GetService<T>();
+
+        public T GetBusinessComponent<T>(string aliasName) where T : INamedService
         {
-            return _container.Resolve<T>();
+            IEnumerable<T> namedServices = _container.GetServices<T>();
+            return namedServices.FirstOrDefault(service => service.ServiceName == aliasName);
         }
-        public T GetBusinessComponent<T>(string aliasName)
+
+        public T GetRepository<T>(string aliasName) where T : INamedService
         {
-            return _container.Resolve<T>(aliasName);
-        }
-        public T GetRepository<T>()
-        {
-            return _container.Resolve<T>();
-        }
-        public T GetRepository<T>(string aliasName)
-        {
-            return _container.Resolve<T>(aliasName);
+            return GetBusinessComponent<T>(aliasName);
         }
     }
 }

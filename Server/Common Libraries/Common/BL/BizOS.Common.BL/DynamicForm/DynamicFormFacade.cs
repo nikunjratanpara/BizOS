@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using BizOS.Common.Contracts.DynamicForm;
 using BizOS.Common.Contracts.DynamicForm.Models;
 using BizOS.Base.BL;
-using Unity;
+
 
 namespace BizOS.Common.BL.DynamicForm
 {
@@ -11,7 +11,7 @@ namespace BizOS.Common.BL.DynamicForm
     {
         private IDynamicFormComponent dynamicFormComponent;
 
-        public DynamicFormFacade(IUnityContainer container) : base(container)
+        public DynamicFormFacade(IServiceProvider provider): base(provider)
         {
         }
 

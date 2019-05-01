@@ -1,21 +1,26 @@
 {
-  "name": "biz-os-react",
-  "version": "1.0.0",
-  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
-  "main": "index.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "",
-  "license": "ISC",
+  "name": "biz-os",
+  "version": "0.1.0",
+  "private": true,
   "dependencies": {
-    "global": "^4.3.2",
-    "react": "^16.4.2",
-    "react-dom": "^16.4.2",
-    "rxjs": "^6.2.2"
+    "react": "^16.5.0",
+    "react-dom": "^16.5.0",
+    "react-scripts-ts": "2.17.0",
+    "rxjs": "^6.3.2",
+    "superagent": "^3.8.3"
+  },
+  "scripts": {
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "eject": "react-scripts-ts eject"
   },
   "devDependencies": {
-    "@types/react": "^16.4.8",
-    "@types/react-dom": "^16.0.7"
+    "@types/jest": "^23.3.2",
+    "@types/node": "^10.9.4",
+    "@types/react": "^16.4.13",
+    "@types/react-dom": "^16.0.7",
+    "@types/superagent": "^3.8.4",
+    "typescript": "^3.0.3"
   }
 }

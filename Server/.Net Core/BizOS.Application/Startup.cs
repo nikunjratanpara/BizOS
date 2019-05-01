@@ -1,12 +1,10 @@
 ﻿using BizOS.Base.BL;
-using BizOS.Base.Contracts.DataAccess;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using Unity;
 
 namespace BizOS.Application
 {
@@ -23,17 +21,12 @@ namespace BizOS.Application
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddCors();
-            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+            services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             services.AddMemoryCache();
-            services.AddSingleton<IUnityContainer>(ConfigureUnityContainer());
+            new DependencyConfiguration(services);
+            services.AddSingleton<IServiceProvider>(services.BuildServiceProvider());
         }
-        public IUnityContainer ConfigureUnityContainer()
-        {
-            IUnityContainer container = new UnityContainer();
-            container.RegisterInstance<IConfiguration>(Configuration);
-            new UnityResolver(container);
-            return container;
-        }
+
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {

@@ -8,21 +8,31 @@ using System.Linq;
 using System.Text;
 using BizOS.Common.Extensions;
 using BizOS.Common.Contracts.Constants;
-using Unity;
+using QueryProvider.Contracts.Common;
 
 namespace BizOS.Common.Repository.DynamicForm
 {
     internal class DynamicFormRepository : BaseRepository, IDynamicFormRepository
     {
-        public DynamicFormRepository(IUnityContainer unityContainer) : base(unityContainer, QueryProviders.DynamicForm)
+        private IDynamicFormQueryProvider _dynamicFormQueryProvider;
+        internal IDynamicFormQueryProvider DynamicFormQueryProvider
         {
+            get
+            {
+                return _dynamicFormQueryProvider = _dynamicFormQueryProvider ?? GetBusinessComponent<IDynamicFormQueryProvider>();
+            }
+            set
+            {
+                _dynamicFormQueryProvider = value;
+            }
         }
+        public DynamicFormRepository(IServiceProvider provider): base(provider)
+        {}
 
         public List<FormFieldConfiguration> GetFormControls(string FormConfigId)
         {
-            string query = GetQuery("FormFieldConfiguration");
             return Connection.Query<FormFieldConfiguration, CatalogFieldConfig, DatetimeFieldConfig, Validations, FormFieldConfiguration>(
-                query,
+                DynamicFormQueryProvider.FormFieldConfiguration,
                 (catalogFormConfiguration, catalogFieldConfig, datetimeFieldConfig, validations) => {
                     catalogFormConfiguration.CustomValidation = validations;
                     catalogFormConfiguration.TypeaheadOptions = catalogFieldConfig;
@@ -35,13 +45,7 @@ namespace BizOS.Common.Repository.DynamicForm
 
         public FormConfiguration GetFormConfig(string FormConfigId)
         {
-            string sql = GetQuery("FormConfiguration");
-            return Connection.Query<FormConfiguration>(sql, new { FormConfigId }).FirstOrDefault();
-        }
-
-        public override object GetPocoObject<T>(T Model)
-        {
-            return Model;   
+            return Connection.Query<FormConfiguration>(DynamicFormQueryProvider.FormConfiguration, new { FormConfigId }).FirstOrDefault();
         }
 
         public bool Create(string FormConfigId, Dictionary<string, object> formData)
@@ -173,16 +177,14 @@ namespace BizOS.Common.Repository.DynamicForm
             dynamic config = null;
             if (FormConfigId.IsNotNullOrEmpty())
             {
-                string sql = GetQuery("FormConfiguration");
-                config =  Connection.QuerySingle<dynamic>(sql, new { FormConfigId = FormConfigId });
+                config =  Connection.QuerySingle<dynamic>(DynamicFormQueryProvider.FormConfiguration, new { FormConfigId = FormConfigId });
             }
             return config?.TableName ?? string.Empty;
         }
         private List<FormFieldDBConfiguration> GetFormControlsDBConfig(string FormConfigId)
         {
-            string query = GetQuery("FormFieldConfiguration");
             return Connection.Query<FormFieldDBConfiguration, Validations, DatabaseAttributes, FormFieldDBConfiguration>(
-                query,
+                DynamicFormQueryProvider.FormFieldConfiguration,
                 (catalogFormConfiguration, validations,dbAttributes ) => {
                     catalogFormConfiguration.CustomValidation = validations;
                     catalogFormConfiguration.DBAttributes = dbAttributes;

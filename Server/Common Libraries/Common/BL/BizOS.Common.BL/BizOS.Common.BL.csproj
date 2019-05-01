@@ -1,10 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
-    <PackageReference Include="Unity.Abstractions" Version="3.3.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\BizOS.Base.BL\BizOS.Base.BL.csproj" />
     <ProjectReference Include="..\..\..\Contracts\BizOS.Common.Contracts\BizOS.Common.Contracts.csproj" />
     <ProjectReference Include="..\..\..\Contracts\BizOS.Base.Contracts\BizOS.Base.Contracts.csproj" />
@@ -25,7 +21,7 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>E:\BizOS\Server\Deployment\Other dlls</OutputPath>
+    <OutputPath>F:\BizOS\Server\Deployment\wwwroot</OutputPath>
   </PropertyGroup>
 
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
