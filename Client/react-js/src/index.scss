@@ -1,0 +1,93 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+.list-group-item {
+  padding: 0.2rem 0.5rem;
+}
+
+/*
+.form-control, .custom-select {
+  border: none;
+  border-bottom: 1px solid #ced4da;
+  border-radius: 0;
+}
+.form-control:focus, .custom-select:focus {
+  box-shadow: 0 0 0 0;
+  -webkit-box-shadow: 0 0 0 0;
+}
+*/
+
+.calender {
+  max-width: 290px;
+  position: absolute !important;
+  z-index: 1500;
+}
+.calender-input {
+  max-width: 290px;
+}
+.print {
+  display: none;
+}
+.resume {
+  min-height: 29.7cm;
+  padding: 1.5cm;
+  margin: 1cm auto;
+}
+.resume h1, h2, h3, h4, h5, h6 {
+  color: cornflowerblue !important;
+}
+.resume p {
+  font-size: 17px;
+  margin-bottom: 0;
+}
+.resume .card-body {
+  margin-top: 17px;
+}
+.project-details {
+  margin-bottom: 0.5rem;
+}
+.selectable {
+  cursor: pointer;
+}
+.calender .btn {
+  min-width: 100%;
+}
+.btn-navigation {
+  min-height: 100%;
+}
+.calender-icon {
+  background: transparent;
+  position: absolute;
+  top: 27px;
+  left: 255px;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+
+.icon {
+  background: transparent;
+  position: absolute;
+  top: 28px;
+  right: 0;
+  padding: 5px 10px;
+  cursor: pointer;
+}
+.sidebar {
+  height: 100vh;
+}
+@media print{
+  .resume {
+      min-height: 29.7cm;
+      padding: 1.5cm;
+      margin: 1cm auto;
+      background: white;
+  }
+  .print {
+      display: inherit;
+  }    
+  .no-print {
+      display: none;
+  }
+}
